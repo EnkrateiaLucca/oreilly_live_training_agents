@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to LLM-Based Agents</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+        class: center, middle
+
+        # Introduction to LLM-based Agents
+
+        ---
+
+        # What is an Agent?
+
+        --
+        
+        - Models+Tools
+        
+        --
+        
+        - Capabilities: Internet browsing, purchasing, etc.
+        
+        --
+        
+        - Examples: ChatGPT, Llama2, Mistral
+
+        ---
+
+        ## The Hype Around Agents
+        --
+        
+        - Agents represent a significant technological advancement
+        
+        --
+
+        - Utilization of Large Language Models (LLMs)
+        
+        --
+
+        - Applications: App development, web browsing
+
+        ---
+
+        ## Examples of Agent Implementations
+        --
+
+        - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
+        
+        --
+        
+        - [GPT-Engineer](https://github.com/gpt-engineer-org/gpt-engineer)
+        
+        --
+        
+        - [BabyAGI](https://github.com/yoheinakajima/babyagi)
+
+        ---
+
+        ## Agents in Early Development Stages
+
+        - [Insights from Andrej Karpathy on agents](https://www.youtube.com/watch?v=fqVLjtvWgq8)
+
+        ---
+
+        # Defining an Agent
+
+        --
+        
+        - An entity capable of thought and action
+        
+        --
+
+        - Analogy: ?
+
+        ---
+
+        # Thought and Action Process
+        
+        --
+        
+        - Sequential thoughts and actions
+        
+        --
+
+        - Example: Decision-making process for attending a live-training
+
+        --
+
+        - __Thought__: "I want to learn about agents"
+        
+        --
+        
+        - __Action__: "Go to the internet and research cool platforms where I can learn about agents"
+        
+        --
+        
+        - __Thought__: "O'Reilly has some awesome courses and live-trainings"
+        
+        --
+        
+        - __Action__: "Look up O'Reilly courses"
+        
+        --
+        
+        - __Thought__: "Live-trainings by instructor Lucas are awesome"
+        
+        --
+        
+        - __Action__: "Schedule live-training about agents with instructor Lucas Soares" (lol)
+
+
+        --
+
+        - <p style="color: gray"> Disclaimer:</p>
+        _this style of thought-action pairs is inspired by this paper: [ReACT](https://arxiv.org/pdf/2210.03629.pdf)_
+
+        ---
+
+        # LLMs in Agent Frameworks
+
+        - Utilizing OpenAI API for reasoning and thinking
+
+        ```python
+        import openai
+        import os
+        from dotenv import load_dotenv
+
+        load_dotenv()
+        openai.api_key = os.getenv("OPENAI_API_KEY")
+        ```
+        --
+
+        ```python
+        from openai import OpenAI
+        from IPython.display import Markdown
+        client = OpenAI()
+
+        def get_response(prompt_question):
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo-16k",
+                messages=[{"role": "system", "content": "You are a helpful research and programming assistant"},
+                        {"role": "user", "content": prompt_question}]
+            )
+            
+            return response.choices[0].message.content
+
+        output = get_response("Create a simple task list of 3 desktop things I can do on the terminal.")
+        Markdown(output)
+        ```
+
+        ---
+
+        ```python
+        1. Create a new directory: Use the mkdir command followed by the desired 
+        directory name to create a new directory on your desktop. 
+        For example: mkdir new_directory
+
+        2. List files and directories: Use the ls command to display all the files 
+        and directories on your desktop. Simply type ls and press Enter.
+
+        3. Remove a file: If you want to delete a file from your desktop, use the 
+        rm command followed by the file name. For example: rm file_name.txt. Be 
+        careful when using this command, as it permanently deletes the file and 
+        it cannot be recovered.
+        ```
+
+        ---
+
+        class: center, middle
+
+        # Building Agents with Python and LLMs
+        ### Integrating ChatGPT and Python for Real-world Applications
+
+        ---
+
+        # Python Environment Setup
+
+        ## Installing Dependencies
+        ```python
+        # !pip install langchain_core
+        # !pip install langchain
+        # !pip install openai
+        # !pip install tiktoken
+        # !pip install pypdf
+        ```
+
+        ---
+
+        ## Initializing OpenAI Client
+        ```python
+        import openai
+        import os
+        from dotenv import load_dotenv
+
+        load_dotenv()
+        openai.api_key = os.getenv("OPENAI_API_KEY")
+        ```
+
+        ---
+
+        # Generating Task List
+        - Using LLM to create a task list
+        
+        --
+
+        - Example: Desktop tasks via terminal:
+
+        --
+
+            - Creating directories
+            - Listing files
+            - Removing files
+        
+        --
+        
+        Let's transform them into functions that we could call just like in any type of Python-based application.
+
+        ---
+
+        ## Implementing Basic Functions
+        ```python
+        import subprocess
+
+        def create_directory():
+            subprocess.run(["mkdir", "test"])
+
+        def create_file():
+            subprocess.run(["touch", "test.txt"])
+
+        def list_files():
+            subprocess.run(["ls"])
+        ```
+
+        ---
+
+        # Testing and Integrating Functions
+
+        --
+
+        - Testing: create_directory, create_file, list_files
+
+        --
+
+        - Verifying correct execution
+
+        ---
+
+        # Understanding Agents
+        
+        --
+
+        - Agents as a bridge between LLMs and real-world tasks
+
+        --
+
+        - ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
+
+        ---
+
+        # Connecting Model to Tools
+        
+        ```python
+        class ModelWithTools:
+            # Class definition and functions
+        ```
+
+        ---
+
+        # Connecting Model to Tools
+        
+        --
+
+        - Executing tasks based on LLM responses
+
+        --
+
+        - Using exec() for dynamic function calls
+
+        ---
+
+        # Executing Multiple Actions
+
+        --
+
+
+        - Handling lists of function calls
+
+        --
+
+        - Looping over and executing tasks
+
+        ---
+
+        # Identifying and Solving Issues
+        
+        --
+        
+        - Reliability of model outputs
+        
+        --
+
+        - Structuring function inputs and calls
+
+        ---
+
+        # Understanding Framework Implementations
+
+        --
+
+        - Learning from custom implementation challenges
+
+        --
+
+        - Comparing with higher-level frameworks
+
+        ---
+
+        class: center, middle
+
+        # OpenAI's Function Calling API
+        
+        ---
+
+        # Understanding OpenAI's Approach
+
+        --
+
+        - Overview of OpenAI's function calling API
+
+        --
+
+        - [OpenAI Documentation](https://platform.openai.com/docs/guides/function-calling)
+
+        ---
+
+        # Sequence of Function Calling
+
+        --
+
+        - Steps for implementing function calls
+
+        --
+
+        - Model interaction with external functions
+
+        ---
+
+        ## Example Implementation
+
+        ```python
+        # Python code demonstrating the function calling process
+        # including JSON parsing and handling responses
+        ```
+
+        ---
+
+        # Practical Application
+
+        --
+
+        - Use case: Getting weather information
+
+        --
+
+        - Demonstration of function calls in action
+
+        ---
+
+        # Implementing Custom Functions
+
+        ## Function: create_directory
+        ```python
+        # Python implementation of create_directory function
+        # Including JSON return format
+        ```
+
+        ---
+
+        # Defining Tool Configuration
+        
+        ```python
+        # JSON configuration for create_directory tool
+        ```
+
+        ---
+
+        # Integrating Tools with OpenAI API
+        
+        --
+
+        - Structuring tool configurations
+
+        --
+
+        - Preparing for external function calls
+
+        ---
+
+        class: center, middle
+
+        ## Ready to Implement Your Own Functions?
+
+        ---
+
+        class: center, middle
+
+        # Utilizing OpenAI's Function Calling API
+        ### Implementing External Function Calls with Python and OpenAI
+
+        ---
+
+        # Introduction to OpenAI Functions
+
+        ## Understanding OpenAI's Approach
+        - Overview of OpenAI's function calling API
+        - Link: [OpenAI Documentation](https://platform.openai.com/docs/guides/function-calling)
+
+        ---
+
+        ## Sequence of Function Calling
+        - Steps for implementing function calls
+        - Model interaction with external functions
+
+        ---
+
+        ## Example Implementation
+        ```python
+        # Python code demonstrating the function calling process
+        # including JSON parsing and handling responses
+        ```
+
+        ---
+
+        ## Practical Application
+        - Use case: Getting weather information
+        - Demonstration of function calls in action
+
+        ---
+
+        # Implementing Custom Functions
+
+        ## Function: create_directory
+        ```python
+        # Python implementation of create_directory function
+        # Including JSON return format
+        ```
+
+        ---
+
+        ## Defining Tool Configuration
+        ```python
+        # JSON configuration for create_directory tool
+        ```
+
+        ---
+
+        ## Integrating Tools with OpenAI API
+        - Structuring tool configurations
+        - Preparing for external function calls
+
+        ---
+
+        # Running Terminal Tasks with OpenAI API
+
+        ## Function: run_terminal_task
+        ```python
+        # Python code for running terminal tasks using OpenAI API
+        ```
+
+        ---
+
+        ## Executing the Task
+        - Creating a folder using OpenAI function calls
+        - Verifying task execution
+
+        ---
+
+        # Additional Resources
+
+        ## OpenAI's Official Cookbook
+        - Explore more examples and use cases
+        - [OpenAI Cookbook](https://cookbook.openai.com/examples/how_to_call_functions_with_chat_models)
+
+        ---
+
+        class: center, middle
+
+        # Agents and the LangChain Framework
+        ### Exploring Advanced Agent Implementation
+
+        ---
+
+        # Understanding Agents
+
+        ## The Power of OpenAI Functions
+        - OpenAI functions' role in real-world actions
+        - Structuring function calls with JSON schema
+
+        ---
+
+        ## Complex Task Management
+        - Controlling inputs and outputs of agents
+        - Structuring thought-action pairs
+        - Composing agents with building blocks
+
+        ---
+
+        # LangChain Framework
+
+        ## Introduction to LangChain
+        - [LangChain](https://python.langchain.com/docs/get_started/introduction): Framework for LLM-powered applications
+        - Composing prompts, models, tools for complex applications
+
+        ---
+
+        ## Implementing an Agent with LangChain
+        ```python
+        # Python code showing LangChain implementation for directory creation
+        ```
+
+        ---
+
+        # Breaking Down the Implementation
+
+        ## Custom Tool Definition
+        ```python
+        @tool
+        def create_directory(directory_name):
+            """Function that creates a directory."""
+            subprocess.run(["mkdir", directory_name])
+            return json.dumps({"directory_name": directory_name})
+        ```
+
+        ---
+
+        ## Agent Setup and Execution
+        - Setting up chat model and prompt
+        - Binding chat model with tools
+        - Defining and invoking the agent
+
+        ---
+
+        # Agent Components and Structure
+
+        ## Key Components in LangChain Agents
+        - `@tool` decorator, `ChatOpenAI`, `ChatPromptTemplate`
+        - Function formatting and output parsing
+
+        ---
+
+        ## Control and Transparency
+        - Access to agent's output and decision-making process
+        - Ultimate control over agent behavior
+
+        ---
+
+        # Next Steps
+
+        ## Building Agents with LangChain
+        - Exploring LangChain in upcoming notebook
+        - Deep dive into agent building
+
+        ---
+
+        # References
+
+        - [HuggingGPT](https://github.com/microsoft/JARVIS)
+        - [Gen Agents](https://arxiv.org/pdf/2304.03442.pdf)
+        - [WebGPT](https://www.semanticscholar.org/paper/WebGPT%3A-Browser-assisted-question-answering-with-Nakano-Hilton/2f3efe44083af91cef562c1a3451eee2f8601d22)
+        - [LangChain](https://python.langchain.com/docs/get_started/introduction)
+        - [OpenAI](https://openai.com/)
+        - [OpenAI Function Calling](https://platform.openai.com/docs/guides/function-calling)
+        - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
+        - [GPT-Engineer](https://github.com/gpt-engineer-org/gpt-engineer)
+        - [BabyAGI](https://github.com/yoheinakajima/babyagi)
+        - [Karpathy on Agents](https://www.youtube.com/watch?v=fqVLjtvWgq8)
+        - [ReACT Paper](https://arxiv.org/abs/2210.03629)
+
+        ---
+
+        class: center, middle
+
+        # Conclusion
+        ## Ready to Build Your Own Agents?        
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
+
+
