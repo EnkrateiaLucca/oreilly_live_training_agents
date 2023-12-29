@@ -1,0 +1,8 @@
+openai
+langchain
+tiktoken
+wget
+pandas
+matplotlib
+wikipedia
+python-dotenv
