@@ -1,5 +1,8 @@
 openai
 langchain
+playwright
+pynput
+pyautogui
 tiktoken
 wget
 pandas
