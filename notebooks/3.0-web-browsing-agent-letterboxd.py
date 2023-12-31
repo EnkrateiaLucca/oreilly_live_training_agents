@@ -7,6 +7,7 @@ import sys
 import time
 import pyautogui
 
+
 def login_to_letterboxd(page, username, pwd, consent_box_location):
     """Log in to a letterboxd account."""
     # Go to the login page
@@ -33,6 +34,10 @@ def login_to_letterboxd(page, username, pwd, consent_box_location):
 
     return page
 
+def remove_from_watchlist(page, movie_title: str):
+    pass
+
+
 def search_movie_or_keyword(page, movie_title: str, movie=True):
     # click in the search bar and type in a movie (input in this function)
     # click in search bar by looking at xpath
@@ -50,7 +55,9 @@ def search_movie_or_keyword(page, movie_title: str, movie=True):
     page.wait_for_load_state()
     return page
 
+
 def search_movie_lists(page):
+    """"""
     # Select all elements that match the criteria
     elements = page.query_selector_all('li.poster-container.film-watched')
     movies_list = []
@@ -71,6 +78,9 @@ def test_browsing_feature(function, *args, **kwargs):
         page = context.new_page()
         page = function(page, *args, **kwargs)
 
+
+def browser_agent():
+    pass
 
 
 letterboxd_user = os.environ["LETTERBOXD_USER"]
