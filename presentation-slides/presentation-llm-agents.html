@@ -25,16 +25,98 @@
         ### By Lucas Soares
 
         ---
+        <div class="slide">
+          <h1>Lucas Soares</h1>
+          <div style="display: flex; align-items: center;">
+            <ul style="flex: 1;">
+              <li>ML Engineer</li>
+              <br>
+              <br>
+              <br>
+              <br>
+            </ul>
+            <img src="../notebooks/assets-resources/profile_pic.png" width="300" style="margin-left: 20px;">
+          </div>
+        </div>
+        ---
 
-        # What is an Agent?
+        <div class="slide">
+          <h1>Lucas Soares</h1>
+          <div style="display: flex; align-items: center;">
+            <ul style="flex: 1;">
+              <li>ML Engineer</li>
+              <br>
+              <li>Instructor at O'Reilly Media</li>
+              <br>
+              <br>
+            </ul>
+            <img src="../notebooks/assets-resources/profile_pic.png" width="300" style="margin-left: 20px;">
+          </div>
+        </div>
+
+        ---
+
+        <div class="slide">
+          <h1>Lucas Soares</h1>
+          <div style="display: flex; align-items: center;">
+            <ul style="flex: 1;">
+              <li>ML Engineer</li>
+              <br>
+              <li>Instructor at O'Reilly Media</li>
+              <br>
+              <li>Curious about all things intelligence</li>
+            </ul>
+            <img src="../notebooks/assets-resources/profile_pic.png" width="300" style="margin-left: 20px;">
+          </div>
+        </div>
+
+        ---
+
+        # Table of Contents
+
+        - __Agents as Thought + Action__
+        
+        --
+
+        - __Agents:__ Definition & Tools
+
+        --
+
+        - __Agents in 3 Complexity Levels__
+
+        --
+
+        - __OpenAI's Function API__
 
         --
         
-        ## Thought + Action
+        - __LangChain Framework__
+
+        --
+
+        - __Building Agents with LangChain__
+
+        --
+
+        - __Lots of Demos! :)__
+
+        ---
+
+        # Thought + Action
+
+        --
+
+        - How do we do stuff?
+
+        ---
+
+        # Thought + Action
+
+        - How do we do stuff? We __think__ and we __act__
         
         --
 
-        - Example: [ReACT](https://arxiv.org/pdf/2210.03629.pdf) style Decision-making process for attending a live-training
+        - Example: Decision-making process for attending a live-training
 
         --
 
@@ -42,10 +124,11 @@
         
         --
         
-        - __Action__: "Go to the internet and research cool platforms where I can learn about agents"
+        - __Action__: "Go to the internet and research cool 
+        platforms where I can learn about agents"
         
         --
-        
+
         - __Thought__: "O'Reilly has some awesome courses and live-trainings"
         
         --
@@ -61,23 +144,111 @@
         - __Action__: "Schedule live-training about agents with instructor Lucas Soares"
 
         ---
+        class: center, middle
 
-        ## Examples of Agent Implementations
-        --
-
-        - [BabyAGI](https://github.com/yoheinakajima/babyagi)
-
-        --
-
-        - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
+        # Thinking: 
         
-        --
         
-        - [GPT-Engineer](https://github.com/gpt-engineer-org/gpt-engineer)
+        ## What to do + planning (order, priority..)
+        
+        ---
+        class: center, middle
+
+        # Acting: 
+        
+        
+        ## used __tools: search, browser, etc...__
 
         ---
 
+        # What is an Agent?
+
+        --
+
+        ## LLM
+
+        ---
+
+        # What is an Agent?
+
+
+        ## LLM + Tools
+
+        --
+
+        <div style="display: flex; align-items: center;">
+          <h4>LLM</h4><p> = predicts next word/sentence</p>
+          <img src="../notebooks/assets-resources/llm_predicts_pancakes.png" width="300" style="margin-left:100px">
+        </div>
+
+        --
+
+        <div style="display: flex; align-items: center;">
+          <h4>Tool</h4><p> = perform actions in the real-world</p>
+          <img src="../notebooks/assets-resources/pancake_maker.png" width="300" style="margin-left: 50px;">
+        </div>
+
+
+        ---
+        
+        # ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
+
+        --
+
+
+        <li>LLMs can teach themselves how to <br>  
+            properly call external tools!</li>
+
+        <img style="width: 300px "src="../notebooks/assets-resources/toolformer.png">
+
+        <div style="display: flex; align-items: center;">
+          <li>Tool = </li>
+          <img src="../notebooks/assets-resources/python_icon.png" width="50" style="margin-left: 10px;">
+        </div>
+
+        
+
+        ---
+        # [ReACT](https://arxiv.org/pdf/2210.03629.pdf)
+
+        - LLMs for __RE__asoning & __ACT__ion.
+
+        <img style="width: 600px" src="../notebooks/assets-resources/react_paper_figure.png" >
+
+        ---
+        
+        ## Agents Are Getting Popular
+
+        --
+
+        - [A Survey on Large Language Model based
+        Autonomous Agents](https://arxiv.org/pdf/2308.11432.pdf)  
+
+        <img style="width: 600px" src="../notebooks/assets-resources/agents_growth_trends.png">
+
+        ---
+        # Popular Agent Implementations
+
+        --
+        
+        - [BabyAGI](https://github.com/yoheinakajima/babyagi): separate planning and execution steps
+
+        --
+
+        - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT): created for long-running, open-ended goals
+
+        --
+
+        - [GPT-Researcher](https://github.com/assafelovic/gpt-researcher?ref=blog.langchain.dev): produce detailed, factual and unbiased research reports
+
+        --
+
+        - [OpenGPTs](https://github.com/langchain-ai/opengpts?ref=blog.langchain.dev): Open Source Customizable Agents  
+        ---
+
         ## Andrej Karpathy on Agents
+
+        - Agents are cool!!!
 
         <iframe width="560" height="315" src="https://www.youtube.com/embed/fqVLjtvWgq8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -91,11 +262,7 @@
 
         --
         
-        - ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
-
-        --
-
-        - LLMs can teach themselves how to properly call external tools!
+        - Inspired by ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
 
         <img style="width: 400px "src="../notebooks/assets-resources/toolformer.png"> </img>
 
@@ -103,7 +270,6 @@
 
         # Level 1: LLM + functions inside the prompt
 
-        --
 
         ```python
         from openai import OpenAI
@@ -164,9 +330,11 @@
 
         # Level 1: LLM + functions inside the prompt
 
-        - Look at that the output is that function! 
-        Now, all we need is find a way to execute this function. 
-        We can use Python's built in `exec` method for that:
+        -  Now, all we need is to find a way to execute this function. 
+
+        --
+
+        - We can use Python's built in `exec` method for that:
         
         --
         ```python
@@ -197,6 +365,11 @@
         --
 
         - Solution? __OpenAI Functions__!
+        
+        ---
+        class: center, middle
+
+        # Q&A
         
         ---
         class: center, middle
@@ -338,156 +511,318 @@
         ---
         class: center, middle
 
-        ## Ready to Implement Your Own Functions?
+        # Ready to Implement Your Own Functions?
 
-        <span style="background-color: lightgreen">
+        <h2><span style="background-color: lightgreen">
           OpenAI Functions Demo
-        </span>
+        </span> </h2>
 
         ---
-
         class: center, middle
 
-        # Utilizing OpenAI's Function Calling API
-        ### Implementing External Function Calls with Python and OpenAI
+        # Break 10 Minutes
 
         ---
-
-        # Introduction to OpenAI Functions
-
-        ## Understanding OpenAI's Approach
-        - Overview of OpenAI's function calling API
-        - Link: [OpenAI Documentation](https://platform.openai.com/docs/guides/function-calling)
-
-
-        ---
+        class: center, middle
 
         # Agents and LangChain
-        - Discussion on basics of agents
-        - Implementation in Python
-        - Use of frameworks like openai, langchain
-        - Building productive agents
 
         ---
+        # How Can We Effectively Perform Tasks with Agents?
 
-        ### Slide 2: LangChain Framework
+        --
+
+        - [The Agent Loop](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
+          
+        <img style="width: 700px" src="../notebooks/assets-resources/agent_loop.png">
+
+        <p style="font-size: 14px; margin-top: 10px;">
+           <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">OpenAI's Bet on a Cognitive Architecture</a>
+        </p>
+
+        ---
+        # Good Agents are Routers
+
+        --
+
+        - Good examples of 'useful' agents (that implement a more like routing type of architecture than actual agent architecture)
+
+        --
+
+        - LangChain is a framework to implement these types of routine procedures!
+
+        - ['OpenAI's Bet on a Cognitive Architecture'](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/)
+        ---
+
+        # What is LangChain?
+
+        --
+
+        - [LangChain](https://python.langchain.com/docs/get_started/introduction) is a framework for building
+        context-aware reasoning applications
+
+        --
+
+        - Its main features
+
+        --
+
+          - __Components__: composable tools and integrations 
+          for working with language models. 
+        --
         
-        # LangChain Framework
-        - Installation: `pip install openai langchain docarray ipydrawio ipydrawio_widgets`
-        - [LangChain Introduction](https://python.langchain.com/docs/get_started/introduction)
-        - Focus: Dynamic, reusable prompts for LLMs
+
+          - __Off-the-shelf chains__: built-in assemblages of components for 
+          accomplishing higher-level tasks
         
 
         ---
 
-        ### Slide 3: Main Features of LangChain
+        # Core Elements of LangChain
+
+        --
+
+        ## __Models__
+
+        --
+
+        - Abstractions over LLM APIs (e.g ChatGPT API)
+
+        --
+
+        ```python
+        from langchain.chat_models import ChatOpenAI
+
+        chat_model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-3.5-turbo-1106")
+
+        chat_model.predict("hi!")
+        ```
         
-        # Main Features
-        - **Components**: Abstractions for working with LMs
-        - **Off-the-shelf chains**: Assembling components for tasks
-        - Creation of complex pipelines
+        ---
+
+        # Core Elements of LangChain
         
+        ## __Prompt Templates__
 
-        ---
+        --
 
-        ### Slide 4: Core Elements of LangChain
+        - Abstractions over traditional text prompts for LLMs
 
-        # Core Elements
-        - Models
-        - Prompts
-        - Output parsers
+        --
+
+        ```python
+        from langchain.prompts import ChatPromptTemplate
+        prompt = ChatPromptTemplate.from_template("Show me 5 examples of this concept: {concept}")
+        prompt.format(concept="animal")
+        # Output
+        # 'Human: Show me 5 examples of this concept: animal'
+        ```
         
-
         ---
 
-        ### Slide 5: Models in LangChain
+        # Core Elements of LangChain
+
+        ## __Output parser__
         
-        # Models
-        - Abstractions over LLM APIs
-        - Example with ChatGPT API
-        - Usage of `ChatOpenAI` for model predictions
+        --
 
-        ---
+        - Abstractions for parsing outputs of LLMs 
 
-        ### Slide 6: Basic Components
+        --
         
-        # Basic Components
-        - Models
-        - Prompt templates
-        - Output parsers
-        - Example of creating and using a prompt template
+        ```python
+        from langchain.schema import BaseOutputParser
+
+        class CommaSeparatedListOutputParser(BaseOutputParser):
+            """Parse the output of an LLM call to a comma-separated list."""
+
+            def parse(self, text: str):
+                """Parse the output of an LLM call."""
+                return text.strip().split(", ")
+
+        CommaSeparatedListOutputParser().parse("hi, bye")
+        # Output: ['hi', 'bye']
+        ```
 
         ---
 
-        ### Slide 7: Prompts and Output Parsers
+        # LCEL - Putting Components Together
+
+        --
+
+        ## LCEL interface 
+
+        - Interface that leverages the __`|`__ pipe symbol 
+        to compose LangChain components
+
+        --
         
-        # Prompts and Output Parsers
-        - Creating and formatting prompt templates
-        - Example of an OutputParser converting lists
+        ```python
+        from langchain.chat_models import ChatOpenAI
+        from langchain.prompts import ChatPromptTemplate
+        from langchain.schema.output_parser import StrOutputParser
 
-        ---
 
-        ### Slide 8: Building with LangChain
+        model = ChatOpenAI(temperature=0)
+        prompt = ChatPromptTemplate.from_template(template="Name 5 concepts related to this: {concept}. The output should be in bullet points.")
+        output_parser = StrOutputParser()
         
-        # Building with LangChain
-        - Using "chains" for connecting components
-        - Example of a chain with a prompt and LLM
+        chain = prompt | model | output_parser
+
+        chain.invoke({"concept": "probability distribution"})
+        # Output
+        # - Discrete probability distribution: This concept... 
+        # - Continuous probability.... 
+        # ...
+        ```
 
         ---
+        class: center, middle
 
-        ### Slide 9: LangChain Expression Language (LCEL)
+        # Practicing the Basics of LangChain
+        <h2><span style="background-color: lightgreen">
+          LangChain Demo
+        </span> </h2>
+
+        ---
+        class: center, middle
+
+        # Break
+
+        ---
         
-        # LCEL
-        - New representation language in LangChain
-        - Declarative composition of chains
-        - Example using LCEL format
+        # Building Agents with LangChain
+
+        --
+
+        ## The Agent Loop 
+
+        --
+
+        <img src="../notebooks/assets-resources/agent_loop.svg" width="800">
 
         ---
+        # Key LangChain Components for Agents
 
-        ### Slide 10: LangChain Lab Exercises
+        ## Schema
+
+        --
+
+        - LangChain provides many abstractions for ease of use
+
+        --
+
+        - **AgentAction**: Represents the action an agent should take.
+
+        --
+
+        - **AgentFinish**: Represents the final result to return to the user.
         
-        # Lab Exercises
-        - Building a reporting agent
-        - Components: Tool, Base LLM, Output conditions
+        --
+
+        - **Intermediate Steps**: Previous actions and outputs for the current agent run.
+
+        --
+
+        - **Agent**: Chain responsible for deciding the next step, powered by a language model.
 
         ---
 
-        ### Slide 11: Creating an Agent
+        # Agent Inputs and Outputs
+
+        ## Agent Inputs
+
+        --
         
-        # Creating an Agent
-        - Defining tools and prompt templates
-        - Binding tools to a ChatOpenAI model
-        - Parsing output and invoking agent
+        - Key-value mapping.
+
+        --
+
+        - Required key: `intermediate_steps`.
+
+        --
+
+        ## Agent Outputs
+
+        --
+
+        - Next actions or final response (AgentActions or AgentFinish).
+
+        --
+
+        - Handled by the output parser.
+
+        ---
+        # AgentExecutor
+
+        ## The runtime for a LangChain agent
+
+        ```python
+        next_action = agent.get_action(...)
+        while next_action != AgentFinish:
+            observation = run(next_action)
+            next_action = agent.get_action(..., next_action, observation)
+        return next_action
+        ```
+
+        - Handles complexities like tool errors and logging.
+
+        ---
+        class: center, middle
+
+        <h2><span style="background-color: lightgreen">
+          LangChain Agents Demo
+        </span> </h2>
+
+        ---
+        class: center, middle
+
+        # Break
 
         ---
 
-        ### Slide 12: Agent Execution and Memory
-        
-        # Agent Execution and Memory
-        - Implementing `AgentExecutor`
-        - Incorporating chat history in agent interaction
+        # Tools in LangChain
 
+        --
+
+        - Functions that an agent can invoke.
+
+        --
+
+        - Consists of:
+
+        --
+          - Input schema for the tool.
+
+        --
+
+          - Function to run.
+
+        --
+
+        - Important for building a working agent.
         ---
 
-        ### Conclusion
-        - Recap of LangChain capabilities
-        - Encouragement for experimentation and building with LangChain
+        # Toolkits
+
+        - Groups of 3-5 tools for specific objectives.
+
+        --
+
+        - Example: GitHub toolkit for interacting with GitHub.
+
+        --
+
+        - LangChain provides a wide set of toolkits.
 
         ---
+        class: center, middle
 
-        # LangChain Framework
+        # Let's Build Agents!
 
-        ## Introduction to LangChain
-        - [LangChain](https://python.langchain.com/docs/get_started/introduction): Framework for LLM-powered applications
-        - Composing prompts, models, tools for complex applications
-
-        ---
-
-        # Next Steps
-
-        ## Building Agents with LangChain
-        - Exploring LangChain in upcoming notebook
-        - Deep dive into agent building
+        <h2><span style="background-color: lightgreen">
+          LangChain Agents Demo - Github Agent; Tutor Agent; Research Assistant
+        </span> </h2>
 
         ---
 
