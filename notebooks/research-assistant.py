@@ -3,7 +3,7 @@ from langchain.prompts import ChatPromptTemplate
 from langchain.schema.output_parser import StrOutputParser
 import requests
 from bs4 import BeautifulSoup
-from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
+from langchain.schema.runnable import RunnablePassthrough
 from langchain.utilities import SerpAPIWrapper
 import json
 import sys
