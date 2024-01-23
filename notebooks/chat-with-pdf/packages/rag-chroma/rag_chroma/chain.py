@@ -37,7 +37,12 @@ retriever = vectorstore.as_retriever()
 
 
 from langchain_community.document_loaders import WebBaseLoader
-loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFDirectoryLoader
+# loader = WebBaseLoader("https://lilianweng.github.io/posts/2023-06-23-agent/")
+
+loader = PyPDFDirectoryLoader("/Users/greatmaster/Desktop/projects/oreilly-live-trainings/oreilly_live_training_agents/notebooks/assets-resources/papers")
+
 data = loader.load()
 
 # Split

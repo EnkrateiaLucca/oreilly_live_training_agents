@@ -1,16 +1,2 @@
-openai
 langchain
-langchain_community
-langchain_experimental
-langchainhub
-pypdf
-playwright
-pynput
-chromadb
-pyautogui
-tiktoken
-wget
-pandas
-matplotlib
-wikipedia
-python-dotenv
+jira
