@@ -191,29 +191,28 @@
 
         ---
         
-        # ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
+        # LLMs can use tools!
+
+        - ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
 
         --
 
+        <img style="width: 400px; margin-left:-5px "src="../notebooks/assets-resources/toolformer.png">
 
-        <li>LLMs can teach themselves how to <br>  
-            properly call external tools!</li>
-
-        <img style="width: 300px "src="../notebooks/assets-resources/toolformer.png">
-
-        <div style="display: flex; align-items: center;">
-          <li>Tool = </li>
-          <img src="../notebooks/assets-resources/python_icon.png" width="50" style="margin-left: 10px;">
-        </div>
-
-        
+        <p style="font-size: 14px; margin-top: -10px;">
+          <sup>[1]</sup> <a href="https://arxiv.org/pdf/2302.04761.pdf">(Schick u. a., o. J., 2023)</a>
+        </p>
 
         ---
-        # [ReACT](https://arxiv.org/pdf/2210.03629.pdf)
+        # Interleaving Thoughts and Actions
 
-        - LLMs for __RE__asoning & __ACT__ion.
+        - [ReACT](https://arxiv.org/pdf/2210.03629.pdf): LLMs for __RE__asoning & __ACT__ion.
 
-        <img style="width: 600px" src="../notebooks/assets-resources/react_paper_figure.png" >
+        <img style="width: 800px" src="../notebooks/assets-resources/react_paper_figure.png" >
+
+        <p style="font-size: 14px; margin-top: -10px;">
+          <sup>[2]</sup> <a href="https://arxiv.org/pdf/2210.03629.pdf">Yao, X., et al. (2023)</a>
+        </p>
 
         ---
         
@@ -226,32 +225,53 @@
 
         <img style="width: 600px" src="../notebooks/assets-resources/agents_growth_trends.png">
 
+        <p style="font-size: 14px; margin-top: 10px;">
+          <sup>[3]</sup> <a href="https://arxiv.org/pdf/2308.11432.pdf" >(Wang et al. 2023)</a>
+
         ---
         # Popular Agent Implementations
 
         --
         
-        - [BabyAGI](https://github.com/yoheinakajima/babyagi): separate planning and execution steps
+        - [BabyAGI](https://github.com/yoheinakajima/babyagi): 
 
         --
+        separate planning and execution steps
+
+        <img style="width: 600px" src="../notebooks/assets-resources/baby-agi.png" alt="">
+
+        <p style="font-size: 14px; margin-top: -10px;">
+          <sup>[4]</sup> <a href="https://github.com/yoheinakajima/babyagi" >BabyAGI</a>
+
+        ---
+        # Popular Agent Implementations
 
         - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT): created for long-running, open-ended goals
 
-        --
+        <img style="width: 800px" src="../notebooks/assets-resources/autogpt.png" alt="">
+
+        <p style="font-size: 14px; margin-top: 10px;">
+          <sup>[5]</sup> <a href="https://github.com/Significant-Gravitas/AutoGPT" >AutoGPT</a>
+
+        ---
+        # Popular Agent Implementations
 
         - [GPT-Researcher](https://github.com/assafelovic/gpt-researcher?ref=blog.langchain.dev): produce detailed, factual and unbiased research reports
 
-        --
+        <img style="width: 300px" src="../notebooks/assets-resources/gpt-researcher.png" alt="">
 
-        - [OpenGPTs](https://github.com/langchain-ai/opengpts?ref=blog.langchain.dev): Open Source Customizable Agents  
+        <p style="font-size: 14px; margin-top: 10px;">
+          <sup>[6]</sup> <a href="https://github.com/assafelovic/gpt-researcher?ref=blog.langchain.dev">GPT-Researcher</a> 
         ---
+        # Popular Agent Implementations
 
-        ## Andrej Karpathy on Agents
+        - [Custom GPTs](https://openai.com/blog/introducing-gpts) for specific tasks  
 
-        - Agents are cool!!!
+        <img style="width: 500px" src="../notebooks/assets-resources/custom-gpts.png" alt="">
 
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/fqVLjtvWgq8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+        <p style="font-size: 14px; margin-top: 10px;">
+          <sup>[7]</sup> <a href="https://openai.com/blog/introducing-gpts">Custom GPT OpenAI Blog Post</a>
+        
         ---
         class: center, middle
         # Agents in 3 Levels of Complexity
@@ -264,7 +284,10 @@
         
         - Inspired by ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
 
-        <img style="width: 400px "src="../notebooks/assets-resources/toolformer.png"> </img>
+        <img style="width: 400px "src="../notebooks/assets-resources/toolformer.png">
+
+        <p style="font-size: 14px; margin-top: 10px;">
+          <sup>[1]</sup> <a href="https://arxiv.org/pdf/2302.04761.pdf">(Schick u. a., o. J., 2023)</a>
 
         ---
 
@@ -410,6 +433,10 @@
         --
         
         4. Call the model again by appending the function response as a new message, and let the model summarize the results back to the user.
+
+        <p style="font-size: 14px; margin-top: 10px;">
+          <sup>[8]</sup><a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function Calling Docs</a>
+        </p>
         
 
         ---
@@ -537,9 +564,7 @@
         <img style="width: 700px" src="../notebooks/assets-resources/agent_loop.png">
 
         <p style="font-size: 14px; margin-top: 10px;">
-           <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">OpenAI's Bet on a Cognitive Architecture</a>
-        </p>
-
+          <sup>[9]</sup> <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram." >OpenAI's Bet on a Cognitive Architecture</a>
         ---
         # Good Agents are Routers
 
@@ -574,6 +599,9 @@
 
           - __Off-the-shelf chains__: built-in assemblages of components for 
           accomplishing higher-level tasks
+
+          <p style="font-size: 14px; margin-top: 250px;">
+            <sup>[10]</sup> <a href="https://python.langchain.com/docs/get_started/introduction" >LangChain Docs</a>
         
 
         ---
@@ -828,17 +856,18 @@
 
         # References
 
-        - [HuggingGPT](https://github.com/microsoft/JARVIS)
-        - [Gen Agents](https://arxiv.org/pdf/2304.03442.pdf)
-        - [WebGPT](https://www.semanticscholar.org/paper/WebGPT%3A-Browser-assisted-question-answering-with-Nakano-Hilton/2f3efe44083af91cef562c1a3451eee2f8601d22)
-        - [LangChain](https://python.langchain.com/docs/get_started/introduction)
-        - [OpenAI](https://openai.com/)
-        - [OpenAI Function Calling](https://platform.openai.com/docs/guides/function-calling)
-        - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
-        - [GPT-Engineer](https://github.com/gpt-engineer-org/gpt-engineer)
-        - [BabyAGI](https://github.com/yoheinakajima/babyagi)
-        - [Karpathy on Agents](https://www.youtube.com/watch?v=fqVLjtvWgq8)
-        - [ReACT Paper](https://arxiv.org/abs/2210.03629)
+          1. [Toolformer - Schick et al., 2023](https://arxiv.org/pdf/2302.04761.pdf)
+          2. [ReACT - Yao, X., et al., 2023](https://arxiv.org/pdf/2210.03629.pdf)
+          3. [A Survey on Large Language Model based Autonomous Agents - Wang et al., 2023](https://arxiv.org/pdf/2308.11432.pdf)
+          4. [BabyAGI](https://github.com/yoheinakajima/babyagi)
+          5. [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT)
+          6. [GPT-Researcher](https://github.com/assafelovic/gpt-researcher?ref=blog.langchain.dev)
+          7. [Custom GPTs](https://openai.com/blog/introducing-gpts)
+          8. [OpenAI function calling Docs](https://platform.openai.com/docs/guides/function-calling)
+          9. [OpenAI's Bet on a Cognitive Architecture](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
+          10. [LangChain Docs](https://python.langchain.com/docs/get_started/introduction)
+
+
 
         ---
 
