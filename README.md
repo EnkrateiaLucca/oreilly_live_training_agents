@@ -43,7 +43,7 @@ OPENAI_API_KEY=<your openai api key>
 
 ## To use this Environment with Jupyter Notebooks:
 
-- ```pip install jupyter```
+- ```conda install jupyter -y```
 - ```python -m ipykernel install --user --name=oreilly-agents```
 
 ## Notebooks

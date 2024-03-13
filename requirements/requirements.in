@@ -1,0 +1,7 @@
+openai
+langchain[all]
+tiktoken
+pypdf
+chroma
+jira
+python-dotenv
