@@ -51,7 +51,7 @@ OPENAI_API_KEY=<your openai api key>
 Here are the notebooks available in the `notebooks/` folder:
 
 1. [Intro Agents](notebooks/1.0-intro-agents.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github.com/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.0-intro-agents.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.0-intro-agents.ipynb)
 
 2. [Intro Agents OpenAI Functions](notebooks/1.1-intro-agents-openai-functions.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.1-intro-agents-openai-functions.ipynb)
