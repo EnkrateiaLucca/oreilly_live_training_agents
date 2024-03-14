@@ -1,0 +1,15 @@
+jupyter
+python-dotenv
+openai
+langchain
+langchainhub
+langchain-openai
+langchain-community
+langchain-cli
+langserve
+tiktoken
+pypdf
+chroma
+jira
+google-search-results
+numexpr
