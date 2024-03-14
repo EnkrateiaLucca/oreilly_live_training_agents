@@ -4,9 +4,8 @@ import os
 from langchain.tools import tool
 from langchain.agents import initialize_agent, AgentExecutor
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain.tools.render import format_tool_to_openai_function
-from langchain.chat_models import ChatOpenAI
-from langchain.agents.format_scratchpad import format_to_openai_function_messages
+from langchain_openai.chat_models import ChatOpenAI
+from langchain.agents.format_scratchpad.openai_tools import format_to_openai_tool_messages
 from langchain.agents.output_parsers import OpenAIFunctionsAgentOutputParser
 import sys
 
@@ -132,7 +131,7 @@ def setup_agent(prompt, llm_with_tools):
     agent = (
     {
         "input": lambda x: x["input"],
-        "agent_scratchpad": lambda x: format_to_openai_function_messages(
+        "agent_scratchpad": lambda x: format_to_openai_tool_messages(
             x["intermediate_steps"]
         ),
     }
@@ -156,6 +155,6 @@ if __name__=="__main__":
         update_issue_status,
         list_issue_transition_options,
     ]
-    llm_with_tools = llm.bind(functions=[format_tool_to_openai_function(t) for t in tools])
+    llm_with_tools = llm.bind_tools(tools)
     agent_executor = setup_agent(prompt, llm_with_tools)
     agent_executor.invoke({"input": action_input})
