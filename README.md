@@ -8,7 +8,7 @@
 - This repo was tested on a Mac with python=3.10.
 - Create an environment: `conda create -n oreilly-agents python=3.10`
 - Activate your environment with: `conda activate oreilly-agents`
-- Install requirements with: `pip install -r requirements.txt`
+- Install requirements with: `pip install -r requirements/requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
 
 **Pip**
@@ -26,7 +26,7 @@
 3. **Install Dependencies from `requirements.txt`:**
     ```bash
     pip install python-dotenv
-    pip install -r requirements.txt
+    pip install -r ./requirements/requirements.txt
     ```
 
 4. Setup your openai [API key](https://platform.openai.com/)
