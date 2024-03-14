@@ -86,7 +86,7 @@
 
         --
 
-        - __OpenAI's Function API__
+        - __OpenAI's Function Calling API__
 
         --
         
@@ -233,9 +233,7 @@
 
         --
         
-        - [BabyAGI](https://github.com/yoheinakajima/babyagi): 
-
-        --
+        - [BabyAGI](https://github.com/yoheinakajima/babyagi):
         separate planning and execution steps
 
         <img style="width: 600px" src="../notebooks/assets-resources/baby-agi.png" alt="">
@@ -361,7 +359,9 @@
         
         --
         ```python
-        exec("model." + output)
+        # Output:
+        # create_directory('lucas-the-agent-master')
+        exec(output)
         !ls -d */ | grep lucas
         # Output:
         # lucas-the-agent-master/
@@ -388,11 +388,6 @@
         --
 
         - Solution? __OpenAI Functions__!
-        
-        ---
-        class: center, middle
-
-        # Q&A
         
         ---
         class: center, middle
@@ -532,9 +527,7 @@
           return second_response
 
           output = run_terminal_task()
-
         ```
-
         ---
         class: center, middle
 
@@ -543,6 +536,11 @@
         <h2><span style="background-color: lightgreen">
           OpenAI Functions Demo
         </span> </h2>
+        
+        ---
+        class: center, middle
+
+        # Q&A
 
         ---
         class: center, middle
@@ -554,6 +552,29 @@
 
         # Agents and LangChain
 
+        ---
+        # LangChain Implementation
+
+        ```python
+        from langchain.agents import create_openai_tools_agent
+        from langchain_openai import ChatOpenAI
+        from langchain import hub
+        from langchain.tools import tool
+        from langchain.agents import AgentExecutor
+        import subprocess
+
+        @tool
+        def create_directory(directory_name):
+            """Function that creates a directory with the given name."""
+            subprocess.run(["mkdir", directory_name])
+
+        prompt = hub.pull("hwchase17/openai-functions-agent")
+        llm = ChatOpenAI(model="gpt-4-0125-preview")
+        tools = [create_directory]
+        agent = create_openai_tools_agent(llm, tools, prompt)
+        agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+        agent_executor.invoke({"input": "Create a folder called 'lucas-the-agent-master'."})
+        ```
         ---
         # How Can We Effectively Perform Tasks with Agents?
 
@@ -619,7 +640,7 @@
         --
 
         ```python
-        from langchain.chat_models import ChatOpenAI
+        from langchain_openai.chat_models import ChatOpenAI
 
         chat_model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-3.5-turbo-1106")
 
@@ -686,7 +707,7 @@
         --
         
         ```python
-        from langchain.chat_models import ChatOpenAI
+        from langchain_openai.chat_models import ChatOpenAI
         from langchain.prompts import ChatPromptTemplate
         from langchain.schema.output_parser import StrOutputParser
 
