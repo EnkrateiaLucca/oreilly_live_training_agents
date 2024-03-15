@@ -5,3 +5,10 @@ reveal.js-master/
 *.pdf
 
 AI_Learning_ToolKit/
+
+# Virtual environment
+.venv/
+
+# Notebook output
+lucas-the-agent-master/
+test.txt
