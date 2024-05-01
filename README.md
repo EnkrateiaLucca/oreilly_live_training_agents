@@ -59,24 +59,24 @@ Here are the notebooks available in the `notebooks/` folder:
 3. [Intro LangChain](notebooks/1.2-intro-langchain.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.2-intro-langchain.ipynb)
 
-4. [Building LLM Agents with LangChain](notebooks/2.0-building-llm-agents-with-langchain.ipynb)
+4. [Intro Agents with LangChain](notebooks/1.3-intro-agents-with-langchain.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.3-intro-agents-with-langchain.ipynb)
+
+5. [Building LLM Agents with LangChain](notebooks/2.0-building-llm-agents-with-langchain.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.0-building-llm-agents-with-langchain.ipynb)
 
-5. [Building Agents with LangChain and LCEL Interface](notebooks/2.1-building-agents-with-langchain-and-LCEL-interface.ipynb)
+6. [Building Agents with LangChain and LCEL Interface](notebooks/2.1-building-agents-with-langchain-and-LCEL-interface.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.1-building-agents-with-langchain-and-LCEL-interface.ipynb)
 
-6. [LangChain GitHub Agent Prototype](notebooks/3.0-langchain-github-agent-prototype.ipynb)
+7. [LangChain GitHub Agent Prototype](notebooks/3.0-langchain-github-agent-prototype.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/3.0-langchain-github-agent-prototype.ipynb)
 
-7. [Building a Simple Research Agent](notebooks/4.0-building-a-simple-research-agent.ipynb)
+8. [Building a Simple Research Agent](notebooks/4.0-building-a-simple-research-agent.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/4.0-building-a-simple-research-agent.ipynb)
 
-8. [LangChain Deploy Chat with Website](notebooks/5.0-langchain-deploy-chat-with-website.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/5.0-langchain-deploy-chat-with-website.ipynb)
+9. [LangChain Deploy Chat with Website](notebooks/5.0-langchain-deploy-chat-with-website.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/5.0-langchain-deploy-agent.ipynb)
 
-9. [LangChain Deploy Agent](notebooks/5.1-langchain-deploy-agent.ipynb)
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/5.1-langchain-deploy-agent.ipynb)
-
-10. [Jira Issues Exploring](notebooks/jira_issues_exploring.ipynb)
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/jira_issues_exploring.ipynb)
+10. [LangChain Deploy Agent](notebooks/5.1-langchain-deploy-agent.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/5.1-langchain-deploy-chat-with-website.ipynb)
 
