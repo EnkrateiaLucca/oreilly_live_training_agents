@@ -1,4 +1,4 @@
-jupyter
+ipykernel
 python-dotenv
 openai
 langchain
@@ -13,3 +13,4 @@ chroma
 jira
 google-search-results
 numexpr
+langgraph
