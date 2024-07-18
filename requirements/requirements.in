@@ -8,6 +8,7 @@ langchain-openai
 langchain-community
 langchain-cli
 langserve
+faiss-cpu
 tiktoken
 pypdf
 chroma

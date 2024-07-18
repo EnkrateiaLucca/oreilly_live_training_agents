@@ -52,6 +52,7 @@ distro==1.9.0
     # via openai
 executing==2.0.1
     # via stack-data
+faiss-cpu==1.8.0.post1
 fastapi==0.110.3
     # via
     #   langserve
@@ -148,6 +149,7 @@ nest-asyncio==1.6.0
 numexpr==2.10.1
 numpy==1.26.4
     # via
+    #   faiss-cpu
     #   langchain
     #   langchain-community
     #   numexpr
@@ -161,6 +163,7 @@ orjson==3.10.6
     #   langsmith
 packaging==24.1
     # via
+    #   faiss-cpu
     #   ipykernel
     #   jira
     #   langchain-core
