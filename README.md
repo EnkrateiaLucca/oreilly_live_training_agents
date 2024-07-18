@@ -65,6 +65,9 @@ Here are the notebooks available in the `notebooks/` folder:
 5. [Building LLM Agents with LangChain](notebooks/2.0-building-llm-agents-with-langchain.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.0-building-llm-agents-with-langchain.ipynb)
 
+6. [Simple RAG Agent with LangChain](notebooks/2.1-rag-agent.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.1-rag-agent.ipynb)
+
 6. [LangChain GitHub Agent Prototype](notebooks/3.0-langchain-github-agent-prototype.ipynb)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/3.0-langchain-github-agent-prototype.ipynb)
 
