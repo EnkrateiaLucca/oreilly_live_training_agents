@@ -1,10 +1,10 @@
-1. Automate the summarization of PDF documents for quick review.
-2. Automate the process of converting speech to text for meeting notes.
-3. Create a bot that automatically responds to specific emails based on predefined criteria.
-4. Develop a system that automatically backs up important files to the cloud at scheduled intervals.
-5. Implement a tool that tracks and reports on changes to specific websites or web pages.
-6. Create a script that automatically organizes files in a folder based on their type or content.
-7. Develop a program that can automatically edit videos based on user-defined parameters.
-8. Automate the process of data entry from scanned documents into a database.
-9. Create a bot that can automatically post content to social media platforms based on a schedule.
-10. Implement an AI-driven assistant that can help manage and prioritize emails.
+1. Automate data entry in spreadsheets
+2. Set up automated email responses
+3. Automate backups of important files
+4. Schedule social media posts
+5. Automate invoice generation
+6. Monitor website uptime and send alerts
+7. Automate data scraping from websites
+8. Schedule system cleanups
+9. Automate sending out customer surveys
+10. Automate report generation from databases
