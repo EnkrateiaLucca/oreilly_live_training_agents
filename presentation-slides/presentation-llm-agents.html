@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Introduction to LLM-Based Agents</title>
+    <title>Getting Started with Agents Using LangChain</title>
     <meta charset="utf-8">
     <style>
       @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
@@ -21,15 +21,16 @@
 
         class: center, middle
 
-        # Getting Started with LLM Agents using LangChain
-        ### By Lucas Soares
+        # Getting Started with Agents Using LangChain
+        ## By Lucas Soares
+        ### 07/18/2024
 
         ---
         <div class="slide">
           <h1>Lucas Soares</h1>
           <div style="display: flex; align-items: center;">
             <ul style="flex: 1;">
-              <li>ML Engineer</li>
+              <li>AI Engineer</li>
               <br>
               <br>
               <br>
@@ -44,7 +45,7 @@
           <h1>Lucas Soares</h1>
           <div style="display: flex; align-items: center;">
             <ul style="flex: 1;">
-              <li>ML Engineer</li>
+              <li>AI Engineer</li>
               <br>
               <li>Instructor at O'Reilly Media</li>
               <br>
@@ -60,7 +61,7 @@
           <h1>Lucas Soares</h1>
           <div style="display: flex; align-items: center;">
             <ul style="flex: 1;">
-              <li>ML Engineer</li>
+              <li>AI Engineer</li>
               <br>
               <li>Instructor at O'Reilly Media</li>
               <br>
@@ -74,75 +75,56 @@
 
         # Table of Contents
 
-        - __Agents as Thought + Action__
-        
-        --
-
-        - __Agents:__ Definition & Tools
+        __1. Agents as Thought + Action__
 
         --
 
-        - __Agents in 3 Complexity Levels__
+        __2. Defining Agents__
 
         --
 
-        - __OpenAI's Function Calling API__
-
-        --
-        
-        - __LangChain Framework__
+        __3. Agents in 3 Levels of Complexity__
 
         --
 
-        - __Building Agents with LangChain__
+        __4. OpenAI's Function API__
 
         --
 
-        - __Lots of Demos! :)__
+        __5. LangChain Framework__
+
+        --
+
+        __6. Building Agents with LangChain__
+
+        --
+
+        __7. LangGraph
+
+        --
+
+        __8. Concluding Remarks__
+
+        --
+
+        __9. References__
 
         ---
 
         # Thought + Action
 
         --
-
-        - How do we do stuff?
-
-        ---
-
-        # Thought + Action
 
         - How do we do stuff? We __think__ and we __act__
-        
+
         --
 
         - Example: Decision-making process for attending a live-training
 
         --
 
-        - __Thought__: "I want to learn about agents"
+        <img style="width: 400px" src="../notebooks/assets-resources/thought_action.png">
         
-        --
-        
-        - __Action__: "Go to the internet and research cool 
-        platforms where I can learn about agents"
-        
-        --
-
-        - __Thought__: "O'Reilly has some awesome courses and live-trainings"
-        
-        --
-        
-        - __Action__: "Look up O'Reilly courses"
-        
-        --
-        
-        - __Thought__: "Live-trainings by instructor Lucas are awesome"
-        
-        --
-        
-        - __Action__: "Schedule live-training about agents with instructor Lucas Soares"
-
         ---
         class: center, middle
 
@@ -161,31 +143,19 @@
 
         ---
 
-        # What is an Agent?
-
-        --
-
-        ## LLM
-
-        ---
-
-        # What is an Agent?
-
-
-        ## LLM + Tools
-
-        --
-
-        <div style="display: flex; align-items: center;">
-          <h4>LLM</h4><p> = predicts next word/sentence</p>
-          <img src="../notebooks/assets-resources/llm_predicts_pancakes.png" width="300" style="margin-left:100px">
-        </div>
-
-        --
-
-        <div style="display: flex; align-items: center;">
-          <h4>Tool</h4><p> = perform actions in the real-world</p>
-          <img src="../notebooks/assets-resources/pancake_maker.png" width="300" style="margin-left: 50px;">
+        # What is an Agent? (LLM + Tool)
+        
+        <div style="display: flex; justify-content: space-around; margin-top: 2em;">
+          <div style="text-align: center; width: 45%;">
+            <h3 style="color: #0a0b0b;">LLM</h3>
+            <p>Predicts next word/sentence</p>
+            <img src="../notebooks/assets-resources/llm_predicts_pancakes.png" alt="LLM predicts pancakes" style="width: 100%; max-width: 300px; height: auto; margin-top: 1em;">
+          </div>
+          <div style="text-align: center; width: 45%;">
+            <h3 style="color: #0a0b0b;">Tool</h3>
+            <p>Performs actions in the real-world</p>
+            <img src="../notebooks/assets-resources/pancake_maker.png" alt="Pancake maker" style="width: 100%; max-width: 300px; height: auto; margin-top: 1em;">
+          </div>
         </div>
 
 
@@ -193,7 +163,7 @@
         
         # LLMs can use tools!
 
-        - ['Toolformer'](https://arxiv.org/pdf/2302.04761.pdf)
+        - [Toolformer](https://arxiv.org/pdf/2302.04761.pdf)
 
         --
 
@@ -223,10 +193,12 @@
         - [A Survey on Large Language Model based
         Autonomous Agents](https://arxiv.org/pdf/2308.11432.pdf)  
 
-        <img style="width: 600px" src="../notebooks/assets-resources/agents_growth_trends.png">
+        
+
+        <img style="width: 800px" src="../notebooks/assets-resources/agents_growth_trends.png">
 
         <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[3]</sup> <a href="https://arxiv.org/pdf/2308.11432.pdf" >(Wang et al. 2023)</a>
+          <sup>[3]</sup> <a href="https://arxiv.org/pdf/2308.11432.pdf" >(Wang et al. 2024)</a>
 
         ---
         # Popular Agent Implementations
@@ -289,83 +261,11 @@
 
         ---
 
-        # Level 1: LLM + functions inside the prompt
+        # Level 1: LLM + functions inside the prompt 
 
-
-        ```python
-        from openai import OpenAI
-        client = OpenAI()
-        
-        def get_response(prompt_question, model="gpt-3.5-turbo-16k"):
-            response = client.chat.completions.create(
-                model=model,
-                messages=[{"role": "system", "content": "You are a helpful research and programming assistant"},
-                        {"role": "user", "content": prompt_question}]
-            )
-            
-            return response.choices[0].message.content
-
-        def create_directory(directory_name):
-            subprocess.run(["mkdir", directory_name])
-
-        def create_file(file_name):
-            subprocess.run(["touch", file_name])
-
-        def list_files():
-            subprocess.run(["ls"])
-        ```
-
-        ---
-
-        # Level 1: LLM + functions inside the prompt
-
-        ```python
-
-          task_description = "Create a folder called 'lucas-the-agent-master'. Inside that folder, create a file called 'the-10-master-rules.md"
-          output = get_response(f"""Given this task: {task_description}, \n
-                                  Consider you have access to the following functions:
-                                  
-          def create_directory(directory_name):
-              '''Function that creates a directory given a directory name.'''
-              subprocess.run(["mkdir", directory_name])
-          
-          def create_file(file_name):
-              '''Function that creates a file given a file name.'''
-              subprocess.run(["touch", file_name])
-          
-          def list_files():
-            '''Function that lists all files in the current directory.'''
-              subprocess.run(["ls"])
-          
-          Your output should be the first function to be executed to complete the task containing the necessary arguments.
-          The OUTPUT SHOULD ONLY BE THE PYTHON FUNCTION CALL and NOTHING ELSE.
-          """)
-          
-          Markdown(output)
-
-          # Output:
-          # create_directory('lucas-the-agent-master')
-        ```
-
-        ---
-
-        # Level 1: LLM + functions inside the prompt
-
-        -  Now, all we need is to find a way to execute this function. 
-
-        --
-
-        - We can use Python's built in `exec` method for that:
-        
-        --
-        ```python
-        # Output:
-        # create_directory('lucas-the-agent-master')
-        exec(output)
-        !ls -d */ | grep lucas
-        # Output:
-        # lucas-the-agent-master/
-        ```
+        <div style="display: flex; justify-content: center;">
+          <img style="width: 600px" src="../notebooks/assets-resources/level1-agents.png" alt="LLM Level 1 Agents">
+        </div>
         
         ---
 
@@ -392,151 +292,46 @@
         ---
         class: center, middle
 
-        # OpenAI's Function Calling API
-        
-        ---
-
-        # OpenAI Function Calling
-
-        --
-
-        - [OpenAI function calling](https://platform.openai.com/docs/guides/function-calling):
+        # Level 2: OpenAI Function Calling
 
         ---
 
-        # OpenAI Function Calling
+        # Level 2: OpenAI Function Calling
 
-
-        - [OpenAI function calling](https://platform.openai.com/docs/guides/function-calling): standard way to connect models to outside tools.
 
         --
 
-        ### Steps
+        <div style="display: flex; justify-content: center;">
+          <img src="../notebooks/assets-resources/openai-function-calling-diagram.png" style="width: 60%;">
+        </div>
 
         --
-
-        1. Call the model with the user query and a set of functions defined in the functions parameter.
-        
-        --
-        
-        2. The model can choose to call one or more functions; if so, the content will be a stringified JSON object adhering to your custom schema.
-        
-        --
-        
-        3. Parse the string into JSON in your code, and call your function with the provided arguments if they exist.
-        
-        --
-        
-        4. Call the model again by appending the function response as a new message, and let the model summarize the results back to the user.
 
         <p style="font-size: 14px; margin-top: 10px;">
           <sup>[8]</sup><a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function Calling Docs</a>
         </p>
-        
 
-        ---
+        ???
+        - __Takeaway__: This streamlined interaction sets the stage for the more advanced capabilities provided by the AutoGen framework, focusing on creating efficient, self-improving agents that can communicate with each other.
 
-        # Step 1 & 2
-
-        --
-        
-        ```python
-        import json
-        
-        def create_directory(directory_name):
-            # Function to create a directory
-            subprocess.run(["mkdir", directory_name])
-            return json.dumps({"directory_name": directory_name})
-        
-        tool_create_directory = {
-            "type": "function",
-            "function": {
-                "name": "create_directory",
-                "description": "Create a directory given a directory name.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "directory_name": {
-                            "type": "string",
-                            "description": "The name of the directory to create.",
-                        }
-                    },
-                    "required": ["directory_name"],
-                },
-            },
-        }
-        tools = [tool_create_directory]
-
-        ```
-
-        ---
-
-        # Step 1 & 2
-
-        ```python
-
-        def run_terminal_task():
-            messages = [{"role": "user", "content": 
-            "Create a folder called 'lucas-the-agent-master'."}]
-            tools = [tool_create_directory]  
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo-16k",
-                messages=messages,
-                tools=tools,
-                tool_choice="auto",
-            )
-            response_message = response.choices[0].message
-            tool_calls = response_message.tool_calls
-            # Check if the model called a function
-            if tool_calls:
-                # Proceed to step 3
-        ```
-        ---
-        # Step 3: Parse and execute the function
-
-        ```python
-          available_functions = {
-            "create_directory": create_directory,
-        }
-        messages.append(response_message)
-        for tool_call in tool_calls:
-            function_name = tool_call.function.name
-            function_to_call = available_functions[function_name]
-            function_args = json.loads(tool_call.function.arguments)
-            function_response = function_to_call(
-                directory_name=function_args.get("directory_name"),
-            )
-            messages.append(
-                {
-                    "tool_call_id": tool_call.id,
-                    "role": "tool",
-                    "name": function_name,
-                    "content": function_response,
-                }
-            )
-        ```
-
-        ---
-        # Step 4: Summarize Results Back to User
-
-        ```python
-            second_response = client.chat.completions.create(
-              model="gpt-3.5-turbo-16k",
-              messages=messages,
-          )
-          return second_response
-
-          output = run_terminal_task()
-        ```
         ---
         class: center, middle
 
-        # Ready to Implement Your Own Functions?
+        # Level 3: Autonomous Agents
 
-        <h2><span style="background-color: lightgreen">
-          OpenAI Functions Demo
-        </span> </h2>
-        
+        ---
+        # Level 3: Autonomous Agents
+
+        --
+  
+        <img style="width: 700px" src="../notebooks/assets-resources/agent_loop.png">
+
+        - [The Agent Loop](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
+
+        <p style="font-size: 14px; margin-top: 20px; margin-left: 400px;">
+           <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">OpenAI's Bet on a Cognitive Architecture</a>
+        </p>
+                
         ---
         class: center, middle
 
@@ -550,42 +345,20 @@
         ---
         class: center, middle
 
-        # Agents and LangChain
+        # The Agent Loop
 
-        ---
-        # LangChain Implementation
-
-        ```python
-        from langchain.agents import create_openai_tools_agent
-        from langchain_openai import ChatOpenAI
-        from langchain import hub
-        from langchain.tools import tool
-        from langchain.agents import AgentExecutor
-        import subprocess
-
-        @tool
-        def create_directory(directory_name):
-            """Function that creates a directory with the given name."""
-            subprocess.run(["mkdir", directory_name])
-
-        prompt = hub.pull("hwchase17/openai-functions-agent")
-        llm = ChatOpenAI(model="gpt-4-0125-preview")
-        tools = [create_directory]
-        agent = create_openai_tools_agent(llm, tools, prompt)
-        agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-        agent_executor.invoke({"input": "Create a folder called 'lucas-the-agent-master'."})
-        ```
         ---
         # How Can We Effectively Perform Tasks with Agents?
 
         --
-
-        - [The Agent Loop](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
-          
+  
         <img style="width: 700px" src="../notebooks/assets-resources/agent_loop.png">
 
-        <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[9]</sup> <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram." >OpenAI's Bet on a Cognitive Architecture</a>
+        - [The Agent Loop](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
+
+        <p style="font-size: 14px; margin-top: 20px; margin-left: 400px;">
+           <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">OpenAI's Bet on a Cognitive Architecture</a>
+        </p>
         ---
         # Good Agents are Routers
 
