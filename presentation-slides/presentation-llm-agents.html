@@ -23,7 +23,7 @@
 
         # Getting Started with Agents Using LangChain
         ## By Lucas Soares
-        ### 07/18/2024
+        ### 10/25/2024
 
         ---
         <div class="slide">
@@ -99,7 +99,7 @@
 
         --
 
-        __7. LangGraph
+        __7. LangGraph__
 
         --
 
@@ -199,48 +199,6 @@
 
         <p style="font-size: 14px; margin-top: 10px;">
           <sup>[3]</sup> <a href="https://arxiv.org/pdf/2308.11432.pdf" >(Wang et al. 2024)</a>
-
-        ---
-        # Popular Agent Implementations
-
-        --
-        
-        - [BabyAGI](https://github.com/yoheinakajima/babyagi):
-        separate planning and execution steps
-
-        <img style="width: 600px" src="../notebooks/assets-resources/baby-agi.png" alt="">
-
-        <p style="font-size: 14px; margin-top: -10px;">
-          <sup>[4]</sup> <a href="https://github.com/yoheinakajima/babyagi" >BabyAGI</a>
-
-        ---
-        # Popular Agent Implementations
-
-        - [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT): created for long-running, open-ended goals
-
-        <img style="width: 800px" src="../notebooks/assets-resources/autogpt.png" alt="">
-
-        <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[5]</sup> <a href="https://github.com/Significant-Gravitas/AutoGPT" >AutoGPT</a>
-
-        ---
-        # Popular Agent Implementations
-
-        - [GPT-Researcher](https://github.com/assafelovic/gpt-researcher?ref=blog.langchain.dev): produce detailed, factual and unbiased research reports
-
-        <img style="width: 300px" src="../notebooks/assets-resources/gpt-researcher.png" alt="">
-
-        <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[6]</sup> <a href="https://github.com/assafelovic/gpt-researcher?ref=blog.langchain.dev">GPT-Researcher</a> 
-        ---
-        # Popular Agent Implementations
-
-        - [Custom GPTs](https://openai.com/blog/introducing-gpts) for specific tasks  
-
-        <img style="width: 500px" src="../notebooks/assets-resources/custom-gpts.png" alt="">
-
-        <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[7]</sup> <a href="https://openai.com/blog/introducing-gpts">Custom GPT OpenAI Blog Post</a>
         
         ---
         class: center, middle
@@ -335,6 +293,24 @@
         ---
         class: center, middle
 
+        <h2>
+        <span style="background-color: lightgreen">
+         Notebook Demo: Building a Simple React Agent with LangChain
+        </span>
+        </h2>
+        
+        ---
+        class: center, middle
+        
+        # Q&A
+
+        ---
+        class: center, middle
+
+        # Break 
+
+        ---
+        class: center, middle
         # Q&A
 
         ---
@@ -497,15 +473,6 @@
         # - Continuous probability.... 
         # ...
         ```
-
-        ---
-        class: center, middle
-
-        # Practicing the Basics of LangChain
-        <h2><span style="background-color: lightgreen">
-          LangChain Demo
-        </span> </h2>
-
         ---
         class: center, middle
 
@@ -549,52 +516,17 @@
         - **Agent**: Chain responsible for deciding the next step, powered by a language model.
 
         ---
+        class: center, middle
 
-        # Agent Inputs and Outputs
-
-        ## Agent Inputs
-
-        --
-        
-        - Key-value mapping.
-
-        --
-
-        - Required key: `intermediate_steps`.
-
-        --
-
-        ## Agent Outputs
-
-        --
-
-        - Next actions or final response (AgentActions or AgentFinish).
-
-        --
-
-        - Handled by the output parser.
-
-        ---
-        # AgentExecutor
-
-        ## The runtime for a LangChain agent
-
-        ```python
-        next_action = agent.get_action(...)
-        while next_action != AgentFinish:
-            observation = run(next_action)
-            next_action = agent.get_action(..., next_action, observation)
-        return next_action
-        ```
-
-        - Handles complexities like tool errors and logging.
+        # Practicing the Basics of LangChain
+        <h2><span style="background-color: lightgreen">
+          Building a Simple RAG Agent with LangChain
+        </span> </h2>
 
         ---
         class: center, middle
 
-        <h2><span style="background-color: lightgreen">
-          LangChain Agents Demo
-        </span> </h2>
+        # Q&A
 
         ---
         class: center, middle
@@ -602,51 +534,270 @@
         # Break
 
         ---
-
-        # Tools in LangChain
+        # Understanding Agentic Systems
+        
+        - **Agentic Systems**: Systems that utilize large language models (LLMs) to manage the control flow of applications.
+        
+        --
+        
+        - **Key Functions**: Routing decisions, tool selection, and evaluating output sufficiency.
 
         --
+        
+        - **Agent Loop**: Continuous decision-making process that enables agents to solve complex tasks.
 
-        - Functions that an agent can call.
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Understanding agentic systems in LangGraph. </a>
+        </p>
 
-        --
-
-        - Consists of:
-
-        --
-          - Input schema for the tool.
-
-        --
-
-          - Function to run.
-
-        --
-
-        - Important for building a working agent.
         ---
 
-        # Toolkits
+        # Practical Use Case: Customer Support Agent
 
-        - Groups of 3-5 tools for specific objectives.
+        --
+        
+        - **Scenario**: An LLM-powered customer support agent.
+
+        --
+        
+        - **User Input**: Customer asks about order status.
+
+        --
+        
+        - **LLM Decision**: Determines if it can provide the status directly or if it needs to fetch data from the database.
+
+        --
+        
+        - **Action Taken**: If data fetch is needed, the agent queries the database and updates the user with the order status.
+
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
+        </p>
+
+        ---
+
+        ## Advantages of LLM Agents
+
+        --
+        
+        - **Flexibility**: Agents can adapt to various tasks by determining the best action to take.
+
+        --
+        
+        - **Specialization**: LLM agents can be specialized with a set of tools to perform niche tasks.
+
+        --
+        
+        - **Multi-Agent Collaboration**: Specialized LLM agents can collaborate to perform complex tasks.
+
+        <p class="footnote">
+            <a href='https://blog.langchain.dev/langgraph-multi-agent-workflows/'> LangGraph: Multi-Agent Workflows </a>
+        </p>
+
+        ---
+
+        ## Key Components of Agentic Systems
+
+        --
+        
+        1. **Tool Calling**: Utilizing external tools to perform tasks.
 
         --
 
-        - Example: GitHub toolkit for interacting with GitHub.
+        2. **Action Taking**: Executing actions based on LLM outputs.
 
         --
 
-        - LangChain provides a wide set of toolkits.
+        3. **Memory**: Keeping track of interactions for context-aware responses.
+
+        --
+        
+        4. **Planning**: Structuring steps to ensure optimal decision-making.
+
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Key components of agentic systems. </a>
+        </p>
+
+        ---
+
+        # Agents as Graphs
+
+        --
+
+        - Workflows built with agents are usually structured as graphs!!
+
+        <img src="../notebooks/assets-resources/basic-agent-diagram.png" width="500">
+
+        ---
+
+        # Agent Loop in LangGraph
+
+        - Outline of an basic agent loop in langgraph:
+
+        --
+
+        <img src="../notebooks/assets-resources/agent-loop-langgraph-version.png" width="550">
+
+        ---
+
+        
+        # Why LangGraph?
+        
+        LangGraph is designed for building agentic applications with some core principles:
+
+        --
+        
+        - **Controllability**: Offers low-level control which increases reliability in agentic systems.
+
+        --
+        
+        - **Human-in-the-Loop**: Built-in persistence layer enhances human-agent interaction patterns.
+
+        --
+        
+        - **Streaming First**: Supports streaming of events and tokens, providing real-time feedback to users.
+        
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#why-langgraph'> Overview of LangGraph's purpose and principles. </a>
+        </p>
+        
+        ---
+        class: center, middle
+
+        <h2>
+        <span style="background-color: lightgreen">
+         Notebook Demo: Building a Basic LangGraph Agent
+        </span>
+        </h2>
+
+        ---
+        
+        ## The Basic Components of LangGraph
+        
+        LangGraph models agent workflows as graphs:
+
+        --
+
+        <img src="../notebooks/assets-resources/langgraph-components.png" style="width:400px; margin-left: 150px;">
+
+        --
+        
+        - **Nodes**: Python functions that implement the logic of agents, taking the current State as input and returning an updated State.
+
+        --
+        
+        - **Edges/Conditional Edges**: Functions that implement fixed/conditional transitions to determine which Node to execute next based on the current State.
+
+        <p class="footnote">
+          <a href='https://langchain-ai.github.io/langgraph/concepts/low_level/#update-state'> Explanation of LangGraph's components. </a>
+        </p>
+        
+        ---
+        
+        ## States in LangGraph
+        
+        These graphs in LangGraph are driven by:
+
+        --
+        
+        - **States**: Shared data structures that evolve over time as Nodes execute and pass messages along Edges.
+
+        --
+        
+        - **Message Passing**: Nodes send messages to activate other Nodes, facilitating the execution of workflows in discrete iterations or "super-steps".
+        
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/low_level/#update-state'> Overview of how graphs and states interact in LangGraph. </a>
+        </p>
+        
+        ---
+        class: center, middle
+
+        <h1>
+        <span style="background-color: lightgreen">
+         Notebook Demo: Building a Local LangGraph Agent 
+        </span>
+        </h1>
+
+        ---
+        
+        ## Nodes
+        In LangGraph, Nodes are the core functional units:
+
+        --
+
+        - **Functionality**: Each Node is a Python function that processes the current State and outputs an updated State.
+
+        --
+        
+        - **Execution**: Nodes can run synchronously or asynchronously, and are added to the graph using the `add_node` method.
+
+        --
+        
+        - **Special Nodes**: Includes START and END Nodes to manage the flow of execution in the graph.
+        
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/low_level/#update-state'> Details on the functionality and structure of Nodes in LangGraph. </a>
+        </p>
+        
+        ---
+        class: center, middle
+
+        <h1>
+        <span style="background-color: lightgreen">
+         Notebook Demo: Nodes in LangGraph 
+        </span>
+        </h1>
+
+        ---
+        
+        ## Edges
+        
+        Edges define the routing logic in LangGraph:
+        
+        - **Types of Edges**:
+
+        --
+          
+          - **Normal Edges**: Direct transitions from one Node to another.
+        
+        --
+          
+          - **Conditional Edges**: Determine the next Node(s) to execute based on a function's output.
+        
+        --
+          
+          - **Entry Points**: Specify which Node to invoke first based on user input.
+        
+        --
+        
+        - **Parallel Execution**: Multiple outgoing edges from a Node can trigger parallel execution of destination Nodes.
+        
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/low_level/#update-state'> Explanation of Edges and their role in LangGraph. </a>
+        </p>
+        
+        ---
+        class: center, middle
+
+        <h1>
+          <span style="background-color: lightgreen">
+           Notebook Demo: Edges in LangGraph 
+          </span>
+        </h1>
 
         ---
         class: center, middle
 
-        # Let's Build Agents!
-
-        <h2><span style="background-color: lightgreen">
-          LangChain Agents Demo - Github Agent; Tutor Agent; Research Assistant
-        </span> </h2>
+        <h1>
+          <span style="background-color: lightgreen">
+           Notebook Demo: A Basic Research Agent in LangGraph 
+          </span>
+        </h1>
 
         ---
+
+
 
         # References
 
