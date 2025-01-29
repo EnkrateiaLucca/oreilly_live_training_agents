@@ -19,7 +19,9 @@ appnope==0.1.4
 asttokens==2.4.1
     # via stack-data
 attrs==23.2.0
-    # via aiohttp
+    # via
+    #   aiohttp
+    #   jsonlines
 beautifulsoup4==4.12.3
 certifi==2024.7.4
     # via
@@ -31,6 +33,7 @@ charset-normalizer==3.3.2
 chroma==0.2.0
 click==8.1.7
     # via
+    #   nomic
     #   typer
     #   uvicorn
 colorama==0.4.6
@@ -63,6 +66,8 @@ gitdb==4.0.11
 gitpython==3.1.43
     # via langchain-cli
 google-search-results==2.4.2
+gpt4all==2.8.2
+    # via nomic
 h11==0.14.0
     # via
     #   httpcore
@@ -93,6 +98,10 @@ jedi==0.19.1
 jira==3.8.0
 jiter==0.8.2
     # via openai
+joblib==1.4.2
+    # via scikit-learn
+jsonlines==4.0.0
+    # via nomic
 jsonpatch==1.33
     # via langchain-core
 jsonpointer==3.0.0
@@ -111,12 +120,14 @@ langchain-core==0.3.32
     # via
     #   langchain
     #   langchain-community
+    #   langchain-nomic
     #   langchain-ollama
     #   langchain-openai
     #   langchain-text-splitters
     #   langgraph
     #   langgraph-checkpoint
     #   langserve
+langchain-nomic==0.1.4
 langchain-ollama==0.2.2
 langchain-openai==0.3.2
 langchain-text-splitters==0.3.5
@@ -136,6 +147,8 @@ langsmith==0.3.2
     #   langchain-core
 libcst==1.4.0
     # via langchain-cli
+loguru==0.7.3
+    # via nomic
 markdown-it-py==3.0.0
     # via rich
 marshmallow==3.21.3
@@ -156,13 +169,19 @@ mypy-extensions==1.0.0
     # via typing-inspect
 nest-asyncio==1.6.0
     # via ipykernel
+nomic==3.4.1
+    # via langchain-nomic
 numexpr==2.10.1
 numpy==1.26.4
     # via
     #   faiss-cpu
     #   langchain
     #   langchain-community
+    #   nomic
     #   numexpr
+    #   pandas
+    #   scikit-learn
+    #   scipy
 oauthlib==3.2.2
     # via requests-oauthlib
 ollama==0.4.7
@@ -182,12 +201,17 @@ packaging==24.1
     #   langchain-core
     #   langchainhub
     #   marshmallow
+pandas==2.2.3
+    # via nomic
 parso==0.8.4
     # via jedi
 pexpect==4.9.0
     # via ipython
 pillow==10.4.0
-    # via jira
+    # via
+    #   jira
+    #   langchain-nomic
+    #   nomic
 platformdirs==4.2.2
     # via jupyter-core
 prompt-toolkit==3.0.47
@@ -198,6 +222,8 @@ ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.2
     # via stack-data
+pyarrow==19.0.0
+    # via nomic
 pydantic==2.10.6
     # via
     #   fastapi
@@ -205,6 +231,7 @@ pydantic==2.10.6
     #   langchain-core
     #   langserve
     #   langsmith
+    #   nomic
     #   ollama
     #   openai
     #   pydantic-settings
@@ -216,11 +243,17 @@ pygments==2.18.0
     # via
     #   ipython
     #   rich
+pyjwt==2.10.1
+    # via nomic
 pypdf==4.3.0
 python-dateutil==2.9.0.post0
-    # via jupyter-client
+    # via
+    #   jupyter-client
+    #   pandas
 python-dotenv==1.0.1
     # via pydantic-settings
+pytz==2024.2
+    # via pandas
 pyyaml==6.0.1
     # via
     #   langchain
@@ -236,11 +269,13 @@ regex==2024.5.15
 requests==2.32.3
     # via
     #   google-search-results
+    #   gpt4all
     #   jira
     #   langchain
     #   langchain-community
     #   langchainhub
     #   langsmith
+    #   nomic
     #   requests-oauthlib
     #   requests-toolbelt
     #   tavily-python
@@ -252,7 +287,12 @@ requests-toolbelt==1.0.0
     #   jira
     #   langsmith
 rich==13.7.1
-    # via typer
+    # via
+    #   nomic
+    #   typer
+scikit-learn==1.6.1
+scipy==1.15.1
+    # via scikit-learn
 shellingham==1.5.4
     # via typer
 six==1.16.0
@@ -286,6 +326,8 @@ tenacity==8.5.0
     #   langchain
     #   langchain-community
     #   langchain-core
+threadpoolctl==3.5.0
+    # via scikit-learn
 tiktoken==0.7.0
     # via
     #   langchain-openai
@@ -297,7 +339,10 @@ tornado==6.4.1
     #   ipykernel
     #   jupyter-client
 tqdm==4.66.4
-    # via openai
+    # via
+    #   gpt4all
+    #   nomic
+    #   openai
 traitlets==5.14.3
     # via
     #   comm
@@ -324,6 +369,8 @@ typing-extensions==4.12.2
     #   typing-inspect
 typing-inspect==0.9.0
     # via dataclasses-json
+tzdata==2025.1
+    # via pandas
 urllib3==2.2.2
     # via
     #   requests

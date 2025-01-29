@@ -9,6 +9,8 @@ langchain-community
 langchain-cli
 langchain_ollama
 tavily-python>=0.5.0
+langchain_nomic
+nomic[local]
 langserve
 faiss-cpu
 tiktoken
@@ -18,3 +20,4 @@ jira
 google-search-results
 numexpr
 beautifulsoup4
+scikit-learn
