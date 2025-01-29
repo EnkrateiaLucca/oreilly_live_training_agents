@@ -74,7 +74,9 @@ httpx==0.27.0
     #   langgraph-sdk
     #   langserve
     #   langsmith
+    #   ollama
     #   openai
+    #   tavily-python
 httpx-sse==0.4.0
     # via langchain-community
 idna==3.7
@@ -109,11 +111,13 @@ langchain-core==0.3.32
     # via
     #   langchain
     #   langchain-community
+    #   langchain-ollama
     #   langchain-openai
     #   langchain-text-splitters
     #   langgraph
     #   langgraph-checkpoint
     #   langserve
+langchain-ollama==0.2.2
 langchain-openai==0.3.2
 langchain-text-splitters==0.3.5
     # via langchain
@@ -161,6 +165,8 @@ numpy==1.26.4
     #   numexpr
 oauthlib==3.2.2
     # via requests-oauthlib
+ollama==0.4.7
+    # via langchain-ollama
 openai==1.60.2
     # via langchain-openai
 orjson==3.10.6
@@ -192,16 +198,17 @@ ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.2
     # via stack-data
-pydantic==2.8.2
+pydantic==2.10.6
     # via
     #   fastapi
     #   langchain
     #   langchain-core
     #   langserve
     #   langsmith
+    #   ollama
     #   openai
     #   pydantic-settings
-pydantic-core==2.20.1
+pydantic-core==2.27.2
     # via pydantic
 pydantic-settings==2.7.1
     # via langchain-community
@@ -236,6 +243,7 @@ requests==2.32.3
     #   langsmith
     #   requests-oauthlib
     #   requests-toolbelt
+    #   tavily-python
     #   tiktoken
 requests-oauthlib==2.0.0
     # via jira
@@ -272,13 +280,16 @@ starlette==0.37.2
     # via
     #   fastapi
     #   sse-starlette
+tavily-python==0.5.0
 tenacity==8.5.0
     # via
     #   langchain
     #   langchain-community
     #   langchain-core
 tiktoken==0.7.0
-    # via langchain-openai
+    # via
+    #   langchain-openai
+    #   tavily-python
 tomlkit==0.12.5
     # via langchain-cli
 tornado==6.4.1
