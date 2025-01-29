@@ -88,6 +88,8 @@ ipython==8.26.0
 jedi==0.19.1
     # via ipython
 jira==3.8.0
+jiter==0.8.2
+    # via openai
 jsonpatch==1.33
     # via langchain-core
 jsonpointer==3.0.0
@@ -155,7 +157,7 @@ numpy==1.26.4
     #   numexpr
 oauthlib==3.2.2
     # via requests-oauthlib
-openai==1.35.14
+openai==1.60.2
     # via langchain-openai
 orjson==3.10.6
     # via
@@ -242,7 +244,7 @@ rpds-py==0.19.0
     # via
     #   jsonschema
     #   referencing
-setuptools==71.0.1
+setuptools==75.8.0
     # via pyproject-toml
 shellingham==1.5.4
     # via typer

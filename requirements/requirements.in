@@ -1,6 +1,6 @@
 ipykernel
 python-dotenv
-openai
+openai>1.50.0
 langchain
 langgraph
 langchainhub

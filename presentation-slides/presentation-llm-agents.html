@@ -23,7 +23,7 @@
 
         # Getting Started with Agents Using LangChain
         ## By Lucas Soares
-        ### 10/25/2024
+        ### 01/29/2025
 
         ---
         <div class="slide">
@@ -186,19 +186,27 @@
 
         ---
         
-        ## Agents Are Getting Popular
+        ## 2025 Is the Year of Agents
 
         --
 
-        - [A Survey on Large Language Model based
-        Autonomous Agents](https://arxiv.org/pdf/2308.11432.pdf)  
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;">
+          <div style="grid-column: span 2;">
+            <img src="../notebooks/assets-resources/operator-release.png" style="width: 100%; height: 300px; object-fit: cover; border: 4px solid #4CAF50; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+          </div>
+          <img src="../notebooks/assets-resources/CleanShot 2025-01-24 at 15.30.19@2x.png" style="width: 100%; height: 150px; object-fit: contain;">
+          <img src="../notebooks/assets-resources/CleanShot 2025-01-24 at 15.28.55@2x.png" style="width: 100%; height: 150px; object-fit: contain;">
+          <img src="../notebooks/assets-resources/CleanShot 2025-01-24 at 15.32.23@2x.png" style="width: 100%; height: 150px; object-fit: contain;">
+          <img src="../notebooks/assets-resources/CleanShot 2025-01-24 at 15.34.34@2x.png" style="width: 100%; height: 150px; object-fit: contain;" alt="Andrej Karpathy Tweet">
+        </div>
+
+        <!-- - [A Survey on Large Language Model based -->
+        <!-- Autonomous Agents](https://arxiv.org/pdf/2308.11432.pdf)   -->
 
         
 
-        <img style="width: 800px" src="../notebooks/assets-resources/agents_growth_trends.png">
-
-        <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[3]</sup> <a href="https://arxiv.org/pdf/2308.11432.pdf" >(Wang et al. 2024)</a>
+        <!-- <img style="width: 800px" src="../notebooks/assets-resources/agents_growth_trends.png"> -->
+        <p style="font-size: 14px; margin-top: 10px;">Sources: <a href="https://www.axios.com/2025/01/23/davos-2025-ai-agents">Axios</a>, <a href="https://www.barrons.com/articles/nvidia-stock-ceo-ai-agents-8c20ddfb">Barrons</a>, <a href="https://x.com/karpathy/status/1882544526033924438">Karpathy</a>, <a href="https://openai.com/index/introducing-operator/">OpenAI</a></p>
         
         ---
         class: center, middle
@@ -221,11 +229,15 @@
 
         # Level 1: LLM + functions inside the prompt 
 
+        
+
         <div style="display: flex; justify-content: center;">
-          <img style="width: 600px" src="../notebooks/assets-resources/level1-agents.png" alt="LLM Level 1 Agents">
+          <img style="width: 100%" src="../notebooks/assets-resources/level1-agents.png" alt="LLM Level 1 Agents">
         </div>
         
         ---
+
+        
 
         # Limitations
 
@@ -256,18 +268,32 @@
 
         # Level 2: OpenAI Function Calling
 
+        <img src="../notebooks/assets-resources/level2-agents.png" style="width: 68%;">
+
+        ---
+
+        # Level 2: OpenAI Function Calling
+
+        1. Call model with functions defined – along with your system and user messages.
 
         --
 
-        <div style="display: flex; justify-content: center;">
-          <img src="../notebooks/assets-resources/openai-function-calling-diagram.png" style="width: 60%;">
-        </div>
+        2. Model decides to call function(s) – model returns the name and input arguments.
 
         --
 
-        <p style="font-size: 14px; margin-top: 10px;">
+        3. Execute function code – parse the model's response and handle function calls.
+
+        --
+
+        4. Supply model with results – so it can incorporate them into its final response.
+
+        <p style="font-size: 14px; margin-top: 10px;"></p>
           <sup>[8]</sup><a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function Calling Docs</a>
         </p>
+
+
+        ---        
 
         ???
         - __Takeaway__: This streamlined interaction sets the stage for the more advanced capabilities provided by the AutoGen framework, focusing on creating efficient, self-improving agents that can communicate with each other.
@@ -280,14 +306,12 @@
         ---
         # Level 3: Autonomous Agents
 
-        --
+        
   
-        <img style="width: 700px" src="../notebooks/assets-resources/agent_loop.png">
+        <img style="width: 120%; margin-left: -75px" src="../notebooks/assets-resources/agent-loop.png">
 
-        - [The Agent Loop](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
-
-        <p style="font-size: 14px; margin-top: 20px; margin-left: 400px;">
-           <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">OpenAI's Bet on a Cognitive Architecture</a>
+        <p style="font-size: 14px; margin-top: 120px; margin-left: 0px;">
+           <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">Inspired by this article: 'OpenAI's Bet on a Cognitive Architecture'</a>
         </p>
                 
         ---
@@ -311,15 +335,6 @@
 
         ---
         class: center, middle
-        # Q&A
-
-        ---
-        class: center, middle
-
-        # Break 10 Minutes
-
-        ---
-        class: center, middle
 
         # The Agent Loop
 
@@ -328,12 +343,10 @@
 
         --
   
-        <img style="width: 700px" src="../notebooks/assets-resources/agent_loop.png">
+        <img style="width: 120%; margin-left: -75px" src="../notebooks/assets-resources/agent-loop.png">
 
-        - [The Agent Loop](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
-
-        <p style="font-size: 14px; margin-top: 20px; margin-left: 400px;">
-           <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">OpenAI's Bet on a Cognitive Architecture</a>
+        <p style="font-size: 14px; margin-top: 120px; margin-left: 0px;">
+          <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">Inspired by this article: 'OpenAI's Bet on a Cognitive Architecture'</a>
         </p>
         ---
         # Good Agents are Routers
@@ -479,102 +492,6 @@
         # Break
 
         ---
-        
-        # Building Agents with LangChain
-
-        --
-
-        ## The Agent Loop 
-
-        --
-
-        <img src="../notebooks/assets-resources/agent_loop.svg" width="800">
-
-        ---
-        # Key LangChain Components for Agents
-
-        ## Schema
-
-        --
-
-        - LangChain provides many abstractions for ease of use
-
-        --
-
-        - **AgentAction**: Represents the action an agent should take.
-
-        --
-
-        - **AgentFinish**: Represents the final result to return to the user.
-        
-        --
-
-        - **Intermediate Steps**: Previous actions and outputs for the current agent run.
-
-        --
-
-        - **Agent**: Chain responsible for deciding the next step, powered by a language model.
-
-        ---
-        class: center, middle
-
-        # Practicing the Basics of LangChain
-        <h2><span style="background-color: lightgreen">
-          Building a Simple RAG Agent with LangChain
-        </span> </h2>
-
-        ---
-        class: center, middle
-
-        # Q&A
-
-        ---
-        class: center, middle
-
-        # Break
-
-        ---
-        # Understanding Agentic Systems
-        
-        - **Agentic Systems**: Systems that utilize large language models (LLMs) to manage the control flow of applications.
-        
-        --
-        
-        - **Key Functions**: Routing decisions, tool selection, and evaluating output sufficiency.
-
-        --
-        
-        - **Agent Loop**: Continuous decision-making process that enables agents to solve complex tasks.
-
-        <p class="footnote">
-            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Understanding agentic systems in LangGraph. </a>
-        </p>
-
-        ---
-
-        # Practical Use Case: Customer Support Agent
-
-        --
-        
-        - **Scenario**: An LLM-powered customer support agent.
-
-        --
-        
-        - **User Input**: Customer asks about order status.
-
-        --
-        
-        - **LLM Decision**: Determines if it can provide the status directly or if it needs to fetch data from the database.
-
-        --
-        
-        - **Action Taken**: If data fetch is needed, the agent queries the database and updates the user with the order status.
-
-        <p class="footnote">
-            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
-        </p>
-
-        ---
 
         ## Advantages of LLM Agents
 
@@ -595,7 +512,41 @@
         </p>
 
         ---
+        
+        # Building Agents with LangChain
 
+        --
+
+        <span style="color: orange">-  LangChain gives us the material for the components</span>
+
+        --
+
+        <img src="../notebooks/assets-resources/components-langchain.png" width="800">
+
+        ---
+        class: center, middle
+
+        # But that is half the puzzle!
+        We still need fine-grained control over the connections between components and LCEL is not enough!
+
+        ---
+        # Understanding Agentic Systems
+        
+        - **Agentic Systems**: Systems that utilize large language models (LLMs) to manage the control flow of applications.
+        
+        --
+        
+        - **Key Functions**: Routing decisions, tool selection, and evaluating output sufficiency.
+
+        --
+        
+        - **Agent Loop**: Continuous decision-making process that enables agents to solve complex tasks.
+
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Understanding agentic systems in LangGraph. </a>
+        </p>
+
+        ---
         ## Key Components of Agentic Systems
 
         --
@@ -617,6 +568,25 @@
         <p class="footnote">
             <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Key components of agentic systems. </a>
         </p>
+
+        ---
+        class: center, middle
+        
+        # Solution = LangGraph
+
+        ---
+        # LangGraph = LangChain + Graph Building Capabilities
+        
+        -  LangGraph gives us <span style="color: orange">components from LangChain</span> <span style="color: blue">flexible control for building graphs</span>
+
+        <img src="../notebooks/assets-resources/langgraph-graph.png" width="800">
+
+
+        ---
+        # LangGraph = Deterministic + Non-Deterministic Control Flows
+
+        - With that we get the ability to build workflows that mix probabilistic outputs (LLMs) + deterministic control flows (Python code)
+        
 
         ---
 
@@ -709,15 +679,6 @@
         <p class="footnote">
             <a href='https://langchain-ai.github.io/langgraph/concepts/low_level/#update-state'> Overview of how graphs and states interact in LangGraph. </a>
         </p>
-        
-        ---
-        class: center, middle
-
-        <h1>
-        <span style="background-color: lightgreen">
-         Notebook Demo: Building a Local LangGraph Agent 
-        </span>
-        </h1>
 
         ---
         
@@ -740,14 +701,6 @@
             <a href='https://langchain-ai.github.io/langgraph/concepts/low_level/#update-state'> Details on the functionality and structure of Nodes in LangGraph. </a>
         </p>
         
-        ---
-        class: center, middle
-
-        <h1>
-        <span style="background-color: lightgreen">
-         Notebook Demo: Nodes in LangGraph 
-        </span>
-        </h1>
 
         ---
         
@@ -781,17 +734,47 @@
         class: center, middle
 
         <h1>
-          <span style="background-color: lightgreen">
-           Notebook Demo: Edges in LangGraph 
-          </span>
+        <span style="background-color: lightgreen">
+         Notebook Demo: Building a Local LangGraph Agent 
+        </span>
         </h1>
+        
+        ---
+        class: center, middle
+
+        # Break
+
+        ---
+
+        # Practical Use Case: Customer Support Agent
+
+        --
+        
+        - **Scenario**: An LLM-powered customer support agent.
+
+        --
+        
+        - **User Input**: Customer asks about order status.
+
+        --
+        
+        - **LLM Decision**: Determines if it can provide the status directly or if it needs to fetch data from the database.
+
+        --
+        
+        - **Action Taken**: If data fetch is needed, the agent queries the database and updates the user with the order status.
+
+        <p class="footnote">
+            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
+        </p>
+        ---
 
         ---
         class: center, middle
 
         <h1>
           <span style="background-color: lightgreen">
-           Notebook Demo: A Basic Research Agent in LangGraph 
+           Notebook Demo: Building a Research Agent in LangGraph 
           </span>
         </h1>
 
