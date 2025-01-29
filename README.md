@@ -50,27 +50,26 @@ OPENAI_API_KEY=<your openai api key>
 
 Here are the notebooks available in the `notebooks/` folder:
 
-1. [Intro Agents](notebooks/1.0-intro-agents.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.0-intro-agents.ipynb)
+1. [Intro LLM Agents from Scratch](notebooks/1.0-intro-llm-agents-from-scratch.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.0-intro-llm-agents-from-scratch.ipynb)
 
-2. [Intro Agents OpenAI Functions](notebooks/1.1-intro-agents-openai-functions.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.1-intro-agents-openai-functions.ipynb)
+2. [Intro LLM Patterns and LangChain Components](notebooks/2.0-intro-llm-patterns-and-langchain-components.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.0-intro-llm-patterns-and-langchain-components.ipynb)
 
-3. [Intro LangChain](notebooks/1.2-intro-langchain.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.2-intro-langchain.ipynb)
+3. [Agents with LangChain & LangGraph](notebooks/3.0-agents-with-langchain-langgraph.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/3.0-agents-with-langchain-langgraph.ipynb)
 
-4. [Intro Agents with LangChain](notebooks/1.3-simple-react-agent-with-langchain.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.3-simple-react-agent-with-langchain.ipynb)
+4. [Intro to LangGraph](notebooks/4.0-intro-langgraph.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/4.0-intro-langgraph.ipynb)
 
-5. [Building LLM Agents with LangChain](notebooks/2.0-building-llm-agents-with-langchain.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.0-building-llm-agents-with-langchain.ipynb)
+5. [Local Research Agent with LangGraph](notebooks/5.0-local-research-agent-langgraph.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/5.0-local-research-agent-langgraph.ipynb)
 
-6. [Simple RAG Agent with LangChain](notebooks/2.1-rag-agent.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.1-rag-agent.ipynb)
+6. [Local RAG Agent with LangGraph](notebooks/6.0-local-rag-agent-langgraph.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/6.0-local-rag-agent-langgraph.ipynb)
 
-7. [LangChain GitHub Agent Prototype](notebooks/3.0-langchain-github-agent-prototype.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/3.0-langchain-github-agent-prototype.ipynb)
-
-8. [Building a Simple Research Agent](notebooks/4.0-building-a-simple-research-agent.ipynb)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/4.0-building-a-simple-research-agent.ipynb)
-
+Additional resources can be found in:
+- `notebooks/agent-deploy/` - Agent deployment examples
+- `notebooks/assets-resources/` - Supporting assets and resources
+- `notebooks/extra-notebooks/` - Additional example notebooks
+- `notebooks/extra-scripts/` - Utility scripts and helpers
