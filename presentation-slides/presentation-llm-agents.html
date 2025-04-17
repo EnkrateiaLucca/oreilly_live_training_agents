@@ -23,7 +23,7 @@
 
         # Getting Started with Agents Using LangChain
         ## By Lucas Soares
-        ### 01/29/2025
+        ### 04/14/2025
 
         ---
         <div class="slide">
@@ -214,7 +214,7 @@
 
         ---
 
-        # Level 1: LLM + functions inside the prompt 
+        # Level 1: LLM + functions inside the prompt
 
         --
         
@@ -222,8 +222,9 @@
 
         <img style="width: 400px "src="../notebooks/assets-resources/toolformer.png">
 
-        <p style="font-size: 14px; margin-top: 10px;">
-          <sup>[1]</sup> <a href="https://arxiv.org/pdf/2302.04761.pdf">(Schick u. a., o. J., 2023)</a>
+        <p style="font-size: 14px; margin-left: 0px">
+          <a href='https://arxiv.org/pdf/2302.04761.pdf'> Schick et al. 2023</a>
+        </p>
 
         ---
 
@@ -235,6 +236,50 @@
           <img style="width: 100%" src="../notebooks/assets-resources/level1-agents.png" alt="LLM Level 1 Agents">
         </div>
         
+        ---
+        # Example from Toolformer Paper
+
+        ```
+        Wikipedia Search We use the following prompt
+        for the Wikipedia search tool:
+        Your task is to complete a given piece
+        of text. You can use a Wikipedia Search
+        API to look up information. You can do
+        so by writing "[WikiSearch(term)]" where
+        "term" is the search term you want to
+        look up. Here are some examples of API
+        calls:
+        ```
+        ---
+        # Example from Toolformer Paper
+
+        ```
+        Wikipedia Search We use the following prompt
+        for the Wikipedia search tool:
+        Your task is to complete a given piece
+        of text. You can use a Wikipedia Search
+        API to look up information. You can do
+        so by writing "[WikiSearch(term)]" where
+        "term" is the search term you want to
+        look up. Here are some examples of API
+        calls:
+        Input: The colors on the flag of Ghana
+        have the following meanings: red is for
+        the blood of martyrs, green for forests,
+        and gold for mineral wealth.
+        Output: The colors on the flag of Ghana
+        have the following meanings: red is for
+        [WikiSearch("Ghana flag red meaning")]
+        the blood of martyrs, green for forests,
+        and gold for mineral wealth.
+        ....(more input output examples)...
+        Input: x
+        Output:
+        ```
+
+        <p style="font-size: 14px; margin-left: 0px">
+          <a href='https://arxiv.org/pdf/2302.04761.pdf'> Schick et al. 2023</a>
+        </p>
         ---
 
         
@@ -257,7 +302,7 @@
         
         --
 
-        - Solution? __OpenAI Functions__!
+        - Solution? Function Calling!
         
         ---
         class: center, middle
@@ -289,7 +334,7 @@
         4. Supply model with results – so it can incorporate them into its final response.
 
         <p style="font-size: 14px; margin-top: 10px;"></p>
-          <sup>[8]</sup><a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function Calling Docs</a>
+          <a href="https://platform.openai.com/docs/guides/function-calling">OpenAI Function Calling Docs</a>
         </p>
 
 
@@ -319,7 +364,7 @@
 
         <h2>
         <span style="background-color: lightgreen">
-         Notebook Demo: Building a Simple React Agent with LangChain
+         Notebook Demo: Building a Simple React Agent with LangChain/LangGraph
         </span>
         </h2>
         
@@ -359,7 +404,9 @@
 
         - LangChain is a framework to implement these types of routing procedures!
 
-        - ['OpenAI's Bet on a Cognitive Architecture'](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/)
+        <p style="font-size: 14px; margin-top: 380px; margin-left: 20px;">
+          <a href="https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.">Inspired by this article: 'OpenAI's Bet on a Cognitive Architecture'</a>
+        </p>
         ---
 
         # What is LangChain?
@@ -384,8 +431,17 @@
           accomplishing higher-level tasks
 
           <p style="font-size: 14px; margin-top: 250px;">
-            <sup>[10]</sup> <a href="https://python.langchain.com/docs/get_started/introduction" >LangChain Docs</a>
+            <a href="https://python.langchain.com/docs/get_started/introduction" >LangChain Docs</a>
         
+
+        ---
+        # The LangChain Stack
+
+        <img src="../notebooks/assets-resources/langchain_stack_112024_dark.svg" style="width: 90%;">
+
+        <p style="font-size: 14px;">
+          <a href="https://python.langchain.com/docs/get_started/introduction" >LangChain Docs</a>
+        </p>
 
         ---
 
@@ -404,9 +460,20 @@
         ```python
         from langchain_openai.chat_models import ChatOpenAI
 
-        chat_model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-3.5-turbo-1106")
+        chat_model = ChatOpenAI(api_key=os.getenv("OPENAI_API_KEY"), model="gpt-4o")
 
         chat_model.invoke("hi!")
+        ```
+
+        --
+
+        OR
+
+        ```python
+        # More flexible way to initialize the model (with any provider)
+        from langchain.chat_models import init_chat_model
+
+        model = init_chat_model("gpt-4o-mini", model_provider="openai") 
         ```
         
         ---
@@ -423,10 +490,10 @@
 
         ```python
         from langchain.prompts import ChatPromptTemplate
-        prompt = ChatPromptTemplate.from_template("Show me 5 examples of this concept: {concept}")
-        prompt.format(concept="animal")
+        prompt = ChatPromptTemplate.from_template(template="Name 5 ideas for this product: {product}.")
+        prompt.format(product="dog")
         # Output
-        # 'Human: Show me 5 examples of this concept: animal'
+        # 'Name 5 ideas for this product: dog'
         ```
         
         ---
@@ -442,17 +509,27 @@
         --
         
         ```python
-        from langchain.schema import BaseOutputParser
-
-        class CommaSeparatedListOutputParser(BaseOutputParser):
-            """Parse the output of an LLM call to a comma-separated list."""
-
-            def parse(self, text: str):
-                """Parse the output of an LLM call."""
-                return text.strip().split(", ")
-
-        CommaSeparatedListOutputParser().parse("hi, bye")
-        # Output: ['hi', 'bye']
+        model = ChatOpenAI(temperature=0)
+        # Define your desired data structure.
+        class Joke(BaseModel):
+            setup: str = Field(description="question to set up a joke")
+            punchline: str = Field(description="answer to resolve the joke")
+        
+            # Set up a parser + inject instructions into the prompt template.
+        parser = JsonOutputParser(pydantic_object=Joke)
+        
+        prompt = PromptTemplate(
+            template="Answer the user query.\n{format_instructions}\n{query}\n",
+            input_variables=["query"],
+            partial_variables={"format_instructions": parser.get_format_instructions()},
+        )
+        # LCEL chain interface
+        chain = prompt | model | parser
+        
+        chain.invoke({"query": "Tell me a joke."})
+        # Output
+        # {'setup': 'Why did the chicken cross the road?', 
+        #'punchline': 'To get to the other side!'}
         ```
 
         ---
@@ -475,7 +552,7 @@
 
 
         model = ChatOpenAI(temperature=0)
-        prompt = ChatPromptTemplate.from_template(template="Name 5 concepts related to this: {concept}. The output should be in bullet points.")
+        prompt = ChatPromptTemplate.from_template(template="Name 5 ideas for this product: {product}.")
         output_parser = StrOutputParser()
         
         chain = prompt | model | output_parser
@@ -486,6 +563,27 @@
         # - Continuous probability.... 
         # ...
         ```
+
+        ---
+        class: center, middle
+
+        <h1>
+        <span style="background-color: lightgreen">
+         Whiteboard Demo: Core Components of LangChain
+        </span>
+        </h1>
+
+        ---
+        class: center, middle
+
+        <h1>
+          <span style="background-color: lightgreen">
+           Notebook Demo: Building a Simple LangChain App
+          </span>
+        </h1>
+
+
+
         ---
         class: center, middle
 
@@ -596,7 +694,7 @@
 
         - Workflows built with agents are usually structured as graphs!!
 
-        <img src="../notebooks/assets-resources/basic-agent-diagram.png" width="500">
+        <img src="../notebooks/assets-resources/basic-agent-loop-abstractions.png" width="100%">
 
         ---
 
@@ -606,7 +704,7 @@
 
         --
 
-        <img src="../notebooks/assets-resources/agent-loop-langgraph-version.png" width="550">
+        <img src="../notebooks/assets-resources/basic-agent-diagram-langgraph.png" width="100%">
 
         ---
 
@@ -639,6 +737,11 @@
          Notebook Demo: Building a Basic LangGraph Agent
         </span>
         </h2>
+
+        ---
+        class: center, middle
+
+        # Q&A & Break
 
         ---
         
@@ -738,11 +841,12 @@
          Notebook Demo: Building a Local LangGraph Agent 
         </span>
         </h1>
-        
+
         ---
         class: center, middle
 
-        # Break
+        # Q&A & Break
+
 
         ---
 
@@ -764,10 +868,9 @@
         
         - **Action Taken**: If data fetch is needed, the agent queries the database and updates the user with the order status.
 
-        <p class="footnote">
-            <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
+        <p style="font-size: 14px; margin-top: 200px; margin-left: 0px">
+          <a href='https://langchain-ai.github.io/langgraph/concepts/high_level/#deployment'> Practical use case of LLM agents in customer support. </a>
         </p>
-        ---
 
         ---
         class: center, middle
@@ -779,7 +882,15 @@
         </h1>
 
         ---
+        class: center, middle
 
+        <h1>
+          <span style="background-color: lightgreen">
+           Whiteboard & Notebook Demo: Agents in 2025 - LangChain, LangGraph and MCPs
+          </span>
+        </h1>
+
+        ---
 
 
         # References
@@ -795,14 +906,7 @@
           9. [OpenAI's Bet on a Cognitive Architecture](https://blog.langchain.dev/openais-bet-on-a-cognitive-architecture/#:~:text=sweep.dev%20is%20another%20great%20example.%20they%20wrote%20a%20blog%20over%20the%20summer%20describing%20their%20cognitive%20architecture%2C%20including%20a%20fantastic%20diagram.)
           10. [LangChain Docs](https://python.langchain.com/docs/get_started/introduction)
 
-
-
         ---
-
-        class: center, middle
-
-        # Conclusion
-        ## Ready to Build Your Own Agents?        
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">

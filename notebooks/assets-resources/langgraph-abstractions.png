@@ -1,0 +1,14 @@
+--2025-04-14 12:53:19--  https://enkrateialucca.github.io/lucas-landing-page/assets/2025-02-07-15-29-36.png
+Resolving enkrateialucca.github.io (enkrateialucca.github.io)... 2606:50c0:8001::153, 2606:50c0:8002::153, 2606:50c0:8003::153, ...
+Connecting to enkrateialucca.github.io (enkrateialucca.github.io)|2606:50c0:8001::153|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 158225 (155K) [image/png]
+Saving to: ‘2025-02-07-15-29-36.png’
+
+     0K .......... .......... .......... .......... .......... 32% 22.8M 0s
+    50K .......... .......... .......... .......... .......... 64% 61.0M 0s
+   100K .......... .......... .......... .......... .......... 97% 30.3M 0s
+   150K ....                                                  100% 90.3K=0.005s
+
+2025-04-14 12:53:19 (33.1 MB/s) - ‘2025-02-07-15-29-36.png’ saved [158225/158225]
+

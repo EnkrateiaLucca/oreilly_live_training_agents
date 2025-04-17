@@ -5,8 +5,8 @@
 **Conda**
 
 - Install [anaconda](https://www.anaconda.com/download)
-- This repo was tested on a Mac with python=3.10.
-- Create an environment: `conda create -n oreilly-agents python=3.10`
+- This repo was tested on a Mac with python=3.11.
+- Create an environment: `conda create -n oreilly-agents python=3.11`
 - Activate your environment with: `conda activate oreilly-agents`
 - Install requirements with: `pip install -r requirements/requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
