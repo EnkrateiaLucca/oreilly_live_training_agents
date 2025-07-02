@@ -8,7 +8,7 @@ for chunk in client.runs.stream(
     input={
         "messages": [{
             "role": "human",
-            "content": "What is LangGraph?",
+            "content": "Who is Lucas Soares who works for OReilly Media?",
         }],
     },
     stream_mode="updates",
