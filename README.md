@@ -1,8 +1,40 @@
 # O'Reilly Live Training - Getting Started with LLM Agents using LangChain & LangGraph
 
-## Setup
+## Quick Setup (Recommended: uv)
 
-**Conda**
+The fastest way to get started is using [uv](https://github.com/astral-sh/uv), a modern Python package manager:
+
+1. **Install uv:**
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. **Create and activate virtual environment:**
+   ```bash
+   uv venv .venv --python 3.11
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   uv pip install -r requirements/requirements.txt
+   ```
+
+4. **Set up your environment variables:**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your API keys
+   ```
+
+5. **Install Jupyter kernel for this project:**
+   ```bash
+   uv pip install ipykernel
+   python -m ipykernel install --user --name=oreilly-agents --display-name "O'Reilly Agents (oreilly-agents)"
+   ```
+
+## Alternative Setup Methods
+
+### Using Conda
 
 - Install [anaconda](https://www.anaconda.com/download)
 - This repo was tested on a Mac with python=3.11.
@@ -11,7 +43,7 @@
 - Install requirements with: `pip install -r requirements/requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
 
-**Pip**
+### Using Pip
 
 1. **Create a Virtual Environment:**
     Navigate to your project directory. Make sure you have python3.10 installed!
@@ -19,7 +51,7 @@
     If you're using `virtualenv`: `virtualenv oreilly-agents`
 
 2. **Activate the Virtual Environment:**
-    - **On Windows:** `.\\oreilly-agents\\Scripts\\activate`
+    - **On Windows:** `.\oreilly-agents\Scripts\activate`
     - **On macOS and Linux:** `source oreilly-agents/bin/activate`
 
 3. **Install Dependencies from `requirements.txt`:**
@@ -34,18 +66,36 @@ Remember to deactivate the virtual environment afterwards: `deactivate`
 
 ## Setup your .env file
 
-- Change the `.env.example` file to `.env` and add your OpenAI API key.
+Copy the `.env.example` file to `.env` and add your API keys:
 
 ```bash
-OPENAI_API_KEY=<your openai api key>
+cp .env.example .env
 ```
 
-## To use this Environment with Jupyter Notebooks:
+Then edit `.env` and add your keys:
+- **OPENAI_API_KEY** (required): Get it at https://platform.openai.com/api-keys
+- **TAVILY_API_KEY** (required for web search): Get it at https://tavily.com/
+- **ANTHROPIC_API_KEY** (optional): Get it at https://platform.claude.com/settings/keys 
+- **LANGSMITH_API_KEY** (optional): Get it at https://smith.langchain.com/settings
 
-```bash
-conda install jupyter -y
-python -m ipykernel install --user --name=oreilly-agents
-```
+## Using Jupyter Notebooks
+
+### Selecting the Correct Kernel
+
+**Important:** When opening notebooks in VS Code or Jupyter, you must select the correct kernel:
+
+1. Open any `.ipynb` notebook file
+2. Click on the kernel selector (top-right in VS Code, or top menu in Jupyter)
+3. Select **"O'Reilly Agents (oreilly-agents)"** from the list
+4. If you don't see it, make sure you installed the kernel (see setup step 5)
+
+Using the wrong kernel will cause `ModuleNotFoundError` errors because the packages won't be available.
+
+### Running Notebooks
+
+All notebooks include automatic environment variable loading via `python-dotenv`. The notebooks will:
+1. Load API keys from your `.env` file automatically
+2. Prompt you for any missing keys using secure input
 
 ## Notebooks
 
