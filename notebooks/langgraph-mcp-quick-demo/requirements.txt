@@ -1,6 +1,0 @@
-langgraph>=0.2.0
-langchain-mcp-adapters
-langchain-openai
-mcp
-fastapi
-uvicorn
