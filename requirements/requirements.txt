@@ -9,6 +9,8 @@ aiohttp==3.11.16
     #   langchain-tavily
 aiosignal==1.3.2
     # via aiohttp
+aiosqlite==0.22.1
+    # via langgraph-checkpoint-sqlite
 altair==6.0.0
     # via streamlit
 annotated-doc==0.0.4
@@ -227,7 +229,10 @@ langgraph-checkpoint==2.0.24
     # via
     #   langgraph
     #   langgraph-api
+    #   langgraph-checkpoint-sqlite
     #   langgraph-prebuilt
+langgraph-checkpoint-sqlite==2.0.11
+    # via -r requirements/requirements.in
 langgraph-cli==0.2.4
     # via -r requirements/requirements.in
 langgraph-prebuilt==0.1.8
@@ -458,6 +463,8 @@ sqlalchemy==2.0.40
     # via
     #   langchain
     #   langchain-community
+sqlite-vec==0.1.6
+    # via langgraph-checkpoint-sqlite
 sse-starlette==2.1.3
     # via
     #   langgraph-api

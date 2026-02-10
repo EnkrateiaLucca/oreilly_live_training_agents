@@ -4,6 +4,7 @@ openai>1.50.0
 langchain>0.3.0
 langgraph>=0.3.1
 langgraph-sdk
+langgraph-checkpoint-sqlite>=2.0.0
 langchain-anthropic>=0.1.23
 langchain-fireworks>=0.1.7
 langchainhub
