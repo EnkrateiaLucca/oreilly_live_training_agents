@@ -1,0 +1,24 @@
+Model Context Protocol (MCP) Course
+
+Course Overview:
+This live training course covers the Model Context Protocol, a standardized way to expose tools and capabilities from external servers to AI agents. Students will learn how to build MCP servers and integrate them with LangGraph agents.
+
+Topics Covered:
+- Understanding the Model Context Protocol architecture
+- Building MCP servers with FastMCP
+- Creating tools using the @mcp.tool() decorator
+- Connecting to multiple MCP servers with different transports
+- Integrating MCP tools with LangGraph agents
+- Best practices for tool design and server deployment
+
+Example Lessons:
+1. Building Your First MCP Server: Creating a simple math server with add and multiply functions
+2. Advanced MCP Patterns: Working with stdio and HTTP transports
+3. Multi-Server Agent Integration: Connecting weather and math servers to a single agent
+4. Real-world MCP Applications: Production deployment strategies
+
+Duration: 90 minutes
+Level: Intermediate
+Prerequisites: Basic Python knowledge, familiarity with LangChain/LangGraph
+
+Instructor: Lucas Soares
