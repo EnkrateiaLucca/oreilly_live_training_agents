@@ -77,6 +77,7 @@ Then edit `.env` and add your keys:
 - **TAVILY_API_KEY** (required for web search): Get it at https://tavily.com/
 - **ANTHROPIC_API_KEY** (optional): Get it at https://platform.claude.com/settings/keys 
 - **LANGSMITH_API_KEY** (optional): Get it at https://smith.langchain.com/settings
+- **SERPAPI_KEY** (optional): Get it at https://serpapi.com/ (for Google search)
 
 ## Using Jupyter Notebooks
 
