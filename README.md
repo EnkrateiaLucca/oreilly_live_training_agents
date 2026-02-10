@@ -53,20 +53,20 @@ python -m ipykernel install --user --name=oreilly-agents
 
 The main notebooks are organized in a progressive learning path:
 
-0. [Simple ReAct Agent with LangGraph](notebooks/0.0-simple-react-agent-langgraph.ipynb) - Quick start with a basic ReAct agent
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/0.0-simple-react-agent-langgraph.ipynb)
+0. [Intro to LLM Agents from Scratch](notebooks/0.0-intro-llm-agents-from-scratch.ipynb) - Building agents without frameworks
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/0.0-intro-llm-agents-from-scratch.ipynb)
 
-1. [Intro to LangChain & LangGraph](notebooks/1.0-intro-langchain-langgraph.ipynb) - Fundamentals of LangChain and LangGraph
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.0-intro-langchain-langgraph.ipynb)
+1. [Intro to LangGraph](notebooks/1.0-intro-langgraph.ipynb) - Fundamentals of LangGraph
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.0-intro-langgraph.ipynb)
 
-   - [1.1 LangGraph with ChatGPT Search](notebooks/1.1-intro-langgraph-chatgpt-search.ipynb) - Using search capabilities
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.1-intro-langgraph-chatgpt-search.ipynb)
+   - [1.1 Simple ReAct Agent with LangGraph](notebooks/1.1-simple-react-agent-langgraph.ipynb) - Quick start with a basic ReAct agent
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.1-simple-react-agent-langgraph.ipynb)
 
-   - [1.2 Intro LLM Agents from Scratch](notebooks/1.2-intro-llm-agents-from-scratch.ipynb) - Building agents without frameworks
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.2-intro-llm-agents-from-scratch.ipynb)
+   - [1.2 LangGraph with ChatGPT Search](notebooks/1.2-intro-langgraph-chatgpt-search.ipynb) - Using search capabilities
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/1.2-intro-langgraph-chatgpt-search.ipynb)
 
-2. [Intro to LangGraph](notebooks/2.0-intro-langgraph.ipynb) - Deep dive into LangGraph concepts
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.0-intro-langgraph.ipynb)
+2. [LangGraph Core Concepts](notebooks/2.0-langgraph-core-concepts.ipynb) - Deep dive into LangGraph concepts
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.0-langgraph-core-concepts.ipynb)
 
    - [2.1 LangGraph Basics](notebooks/2.1-langgraph-basics.ipynb) - Core LangGraph components and patterns
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/2.1-langgraph-basics.ipynb)
@@ -74,13 +74,8 @@ The main notebooks are organized in a progressive learning path:
 3. [Local Research Agent with LangGraph](notebooks/3.0-local-research-agent-langgraph.ipynb) - Building a research agent
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/3.0-local-research-agent-langgraph.ipynb)
 
-### Additional Topics
-
-- [LangGraph Persistence](notebooks/intro-langgraph-persistence.ipynb) - State management and persistence in LangGraph
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/intro-langgraph-persistence.ipynb)
-
-- [Level 2: Structured Outputs with Agents](notebooks/level2-structured-outputs-agents.ipynb) - Advanced structured output patterns
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/level2-structured-outputs-agents.ipynb)
+4. [LangGraph Latest Features](notebooks/4.0-langgraph-latest.ipynb) - Latest LangGraph features and patterns
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/4.0-langgraph-latest.ipynb)
 
 ## Repository Structure
 
