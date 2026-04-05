@@ -396,7 +396,7 @@ tiktoken==0.9.0
     #   -r ./requirements/requirements.in
     #   langchain-openai
     #   tavily-python
-tornado==6.4.2
+tornado==6.5.5
     # via
     #   ipykernel
     #   jupyter-client
