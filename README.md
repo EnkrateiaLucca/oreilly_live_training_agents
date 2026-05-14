@@ -1,51 +1,89 @@
 # O'Reilly Live Training - Getting Started with LLM Agents using LangChain & LangGraph
 
-## Setup
+## Quick Setup (Recommended: uv)
 
-**Conda**
+The fastest way to get started is using [uv](https://github.com/astral-sh/uv), a modern Python package manager:
+
+1. **Install uv:**
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. **Create and activate virtual environment:**
+   ```bash
+   uv venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   uv pip install -r requirements/requirements.txt
+   ```
+
+4. **Set up your environment variables:**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your API keys
+   ```
+
+5. **Install Jupyter kernel for this project:**
+   ```bash
+   python -m ipykernel install --user --name=oreilly-agents --display-name "O'Reilly Agents (oreilly-agents)"
+   ```
+
+## Alternative Setup Methods
+
+### Using Conda
 
 - Install [anaconda](https://www.anaconda.com/download)
-- This repo was tested on a Mac with python=3.11.
 - Create an environment: `conda create -n oreilly-agents python=3.11`
 - Activate your environment with: `conda activate oreilly-agents`
 - Install requirements with: `pip install -r requirements/requirements.txt`
 - Setup your openai [API key](https://platform.openai.com/)
 
-**Pip**
+### Using Pip
 
 1. **Create a Virtual Environment:**
-    Navigate to your project directory. Make sure you have python3.10 installed!
+    Navigate to your project directory.
     If using Python 3's built-in `venv`: `python -m venv oreilly-agents`
     If you're using `virtualenv`: `virtualenv oreilly-agents`
 
 2. **Activate the Virtual Environment:**
-    - **On Windows:** `.\\oreilly-agents\\Scripts\\activate`
+    - **On Windows:** `.\oreilly-agents\Scripts\activate`
     - **On macOS and Linux:** `source oreilly-agents/bin/activate`
 
 3. **Install Dependencies from `requirements.txt`:**
     ```bash
-    pip install python-dotenv
     pip install -r ./requirements/requirements.txt
     ```
-
-4. Setup your openai [API key](https://platform.openai.com/)
 
 Remember to deactivate the virtual environment afterwards: `deactivate`
 
 ## Setup your .env file
 
-- Change the `.env.example` file to `.env` and add your OpenAI API key.
+Copy the `.env.example` file to `.env` and add your API keys:
 
 ```bash
-OPENAI_API_KEY=<your openai api key>
+cp .env.example .env
 ```
 
-## To use this Environment with Jupyter Notebooks:
+Then edit `.env` and add your keys:
+- **OPENAI_API_KEY** (required): Get it at https://platform.openai.com/api-keys
+- **TAVILY_API_KEY** (required for web search): Get it at https://tavily.com/
+- **ANTHROPIC_API_KEY** (optional): Get it at https://platform.claude.com/settings/keys
+- **LANGSMITH_API_KEY** (optional): Get it at https://smith.langchain.com/settings
+- **SERPAPI_KEY** (optional): Get it at https://serpapi.com/ (for Google search)
 
-```bash
-conda install jupyter -y
-python -m ipykernel install --user --name=oreilly-agents
-```
+## Using Jupyter Notebooks
+
+### Selecting the Correct Kernel
+
+**Important:** When opening notebooks in VS Code or Jupyter, you must select the correct kernel:
+
+1. Open any `.ipynb` notebook file
+2. Click on the kernel selector (top-right in VS Code, or top menu in Jupyter)
+3. Select **"O'Reilly Agents (oreilly-agents)"** from the list
+4. If you don't see it, make sure you installed the kernel (see setup step 5)
 
 ## Notebooks
 
@@ -74,8 +112,17 @@ The main notebooks are organized in a progressive learning path:
 3. [Local Research Agent with LangGraph](notebooks/3.0-local-research-agent-langgraph.ipynb) - Building a research agent
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/3.0-local-research-agent-langgraph.ipynb)
 
-4. [LangGraph Latest Features](notebooks/4.0-langgraph-latest.ipynb) - Latest LangGraph features and patterns
+4. [LangGraph Latest Features](notebooks/4.0-langgraph-latest.ipynb) - Command, subgraphs, Functional API, MCP, durable execution
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/4.0-langgraph-latest.ipynb)
+
+5. [Persistence and Checkpointers](notebooks/5.0-persistence-and-checkpointers.ipynb) - InMemorySaver, SqliteSaver, thread management, state inspection
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/5.0-persistence-and-checkpointers.ipynb)
+
+6. [Subgraphs](notebooks/6.0-subgraphs.ipynb) - Composing graphs, shared-state and different-schema patterns, multi-agent building blocks
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/6.0-subgraphs.ipynb)
+
+7. [Deployment with LangGraph Platform](notebooks/7.0-deployment-langgraph-platform.ipynb) - Project structure, `langgraph dev`, deploying to LangSmith
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EnkrateiaLucca/oreilly_live_training_agents/blob/main/notebooks/7.0-deployment-langgraph-platform.ipynb)
 
 ## Repository Structure
 
