@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Agents with LangChain &amp; LangGraph — Cheatsheet</title>
+    <style>
+        /* ========================================
+           MODULAR GRID/CARD LAYOUT TEMPLATE
+           Modern, box-based design with visual sections
+           Optimized for A4 printing (210mm × 297mm)
+           ======================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 14mm;
+            @top-left { content: none; }
+            @top-center { content: none; }
+            @top-right { content: none; }
+            @bottom-left { content: none; }
+            @bottom-center { content: none; }
+            @bottom-right { content: none; }
+        }
+
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.45;
+            color: #000;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 14mm;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            padding-bottom: 10pt;
+            margin-bottom: 12pt;
+            border-bottom: 3px solid #000;
+        }
+
+        .page-header h1 {
+            font-size: 20pt;
+            font-weight: 700;
+            margin-bottom: 4pt;
+            text-transform: uppercase;
+            letter-spacing: 1.5pt;
+        }
+
+        .page-header .subtitle {
+            font-size: 11pt;
+            color: #333;
+            margin-bottom: 4pt;
+        }
+
+        .page-header .meta {
+            font-size: 8.5pt;
+            color: #666;
+        }
+
+        /* Section Headers */
+        .section-title {
+            font-size: 11pt;
+            font-weight: 700;
+            margin: 12pt 0 8pt 0;
+            padding: 4pt 8pt;
+            background: #000;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.8pt;
+            break-after: avoid;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8pt;
+            margin-bottom: 10pt;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8pt;
+            margin-bottom: 10pt;
+        }
+
+        /* Card Components */
+        .card {
+            border: 2px solid #000;
+            padding: 8pt;
+            background: #fff;
+            break-inside: avoid;
+        }
+
+        .card-title {
+            font-size: 10pt;
+            font-weight: 700;
+            margin-bottom: 6pt;
+            padding-bottom: 4pt;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .card-content {
+            font-size: 9pt;
+        }
+
+        .card-light {
+            border: 2px solid #000;
+            background: #f9f9f9;
+            padding: 8pt;
+            break-inside: avoid;
+        }
+
+        .card-accent {
+            border: 2px solid #000;
+            background: #fff;
+            padding: 8pt;
+            break-inside: avoid;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            border: 1px solid #999;
+            border-left: 4px solid #000;
+            padding: 8pt;
+            margin: 8pt 0;
+            background: #f5f5f5;
+            break-inside: avoid;
+        }
+
+        .info-box-title {
+            font-weight: 700;
+            font-size: 10pt;
+            margin-bottom: 4pt;
+        }
+
+        /* Definition Cards */
+        .definition-card {
+            border: 2px solid #000;
+            padding: 7pt;
+            background: #fff;
+            break-inside: avoid;
+        }
+
+        .term {
+            font-weight: 700;
+            font-size: 10pt;
+            margin-bottom: 3pt;
+            color: #000;
+        }
+
+        .definition {
+            font-size: 8.5pt;
+            color: #333;
+        }
+
+        /* Code Blocks */
+        .code-card {
+            border: 2px solid #000;
+            background: #fff;
+            padding: 0;
+            break-inside: avoid;
+        }
+
+        .code-card-header {
+            background: #000;
+            color: #fff;
+            padding: 4pt 8pt;
+            font-weight: 700;
+            font-size: 9pt;
+        }
+
+        .code-card pre {
+            margin: 0;
+            padding: 8pt;
+            font-family: 'Courier New', 'Courier', monospace;
+            font-size: 7.5pt;
+            line-height: 1.35;
+            background: #f9f9f9;
+            overflow: hidden;
+            white-space: pre-wrap;
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+
+        /* Tables */
+        .table-card {
+            border: 2px solid #000;
+            background: #fff;
+            padding: 0;
+            break-inside: avoid;
+        }
+
+        .table-card-header {
+            background: #000;
+            color: #fff;
+            padding: 4pt 8pt;
+            font-weight: 700;
+            font-size: 10pt;
+        }
+
+        .table-card table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8.5pt;
+        }
+
+        .table-card th {
+            background: #f0f0f0;
+            color: #000;
+            font-weight: 700;
+            text-align: left;
+            padding: 4pt 6pt;
+            border-bottom: 2px solid #000;
+        }
+
+        .table-card td {
+            padding: 4pt 6pt;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+        }
+
+        .table-card td code, .table-card th code {
+            font-family: 'Courier New', monospace;
+            font-size: 7.5pt;
+            background: #eee;
+            padding: 1pt 2pt;
+        }
+
+        /* Lists in Cards */
+        .card ul, .card ol, .card-light ul, .card-light ol {
+            margin-left: 12pt;
+        }
+
+        .card li, .card-light li {
+            margin-bottom: 3pt;
+        }
+
+        /* Process Steps */
+        .step-container {
+            display: flex;
+            gap: 6pt;
+            margin: 8pt 0;
+            align-items: stretch;
+        }
+
+        .step {
+            flex: 1;
+            border: 2px solid #000;
+            padding: 8pt;
+            text-align: center;
+            background: #fff;
+            break-inside: avoid;
+        }
+
+        .step-number {
+            background: #000;
+            color: #fff;
+            width: 22pt;
+            height: 22pt;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 6pt auto;
+            font-weight: 700;
+            font-size: 11pt;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 9pt;
+            margin-bottom: 4pt;
+        }
+
+        .step-content {
+            font-size: 8pt;
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8pt;
+            margin: 8pt 0;
+        }
+
+        .comparison-item {
+            border: 2px solid #000;
+            padding: 8pt;
+            background: #fff;
+            break-inside: avoid;
+        }
+
+        .comparison-header {
+            font-weight: 700;
+            font-size: 10pt;
+            margin-bottom: 6pt;
+            padding-bottom: 4pt;
+            border-bottom: 2px solid #000;
+            text-align: center;
+        }
+
+        /* Key Points Box */
+        .key-points {
+            border: 2px solid #000;
+            background: #f9f9f9;
+            padding: 10pt;
+            margin: 8pt 0;
+            break-inside: avoid;
+        }
+
+        .key-points-title {
+            font-weight: 700;
+            font-size: 11pt;
+            margin-bottom: 8pt;
+            text-transform: uppercase;
+        }
+
+        .key-points ul {
+            margin-left: 14pt;
+        }
+
+        .key-points li {
+            margin-bottom: 5pt;
+            font-size: 9.5pt;
+        }
+
+        /* Flow Arrow */
+        .flow {
+            display: flex;
+            align-items: center;
+            gap: 4pt;
+            font-size: 8.5pt;
+            flex-wrap: wrap;
+            margin: 4pt 0;
+        }
+
+        .flow-step {
+            background: #000;
+            color: #fff;
+            padding: 2pt 6pt;
+            font-weight: 700;
+            font-size: 8pt;
+        }
+
+        .flow-arrow {
+            font-weight: 700;
+            color: #555;
+        }
+
+        /* Inline code */
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 8pt;
+            background: #f0f0f0;
+            padding: 1pt 2pt;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 14pt;
+            padding-top: 8pt;
+            border-top: 2px solid #000;
+            text-align: center;
+            font-size: 8pt;
+            color: #666;
+        }
+
+        .mb-small { margin-bottom: 6pt; }
+        .mb-medium { margin-bottom: 10pt; }
+
+        /* Print Optimization */
+        @media print {
+            body {
+                margin: 0;
+                padding: 14mm;
+            }
+
+            .card, .card-light, .card-accent, .info-box,
+            .code-card, .table-card, .comparison-item, .key-points, .step {
+                break-inside: avoid;
+            }
+
+            .section-title {
+                break-after: avoid;
+            }
+
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>LLM Agents — LangChain &amp; LangGraph</h1>
+        <div class="subtitle">O'Reilly Live Training — Complete Reference Cheatsheet</div>
+        <div class="meta">Notebooks 0.0 – 7.0 | LangGraph 1.0+ | Python 3.11+</div>
+    </div>
+
+    <!-- ═══ SECTION 1: The Agent Loop ═══ -->
+    <div class="section-title">0. Why Agents? — The Agent Loop from Scratch</div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">What is an Agent?</div>
+            <div class="card-content">
+                <p style="margin-bottom:5pt;">An <strong>agent</strong> = LLM + Tools. The model decides when and how to call tools, gaining access to the real world (search, files, APIs, code execution).</p>
+                <ul>
+                    <li><strong>LLM:</strong> reasoning, planning, language</li>
+                    <li><strong>Tools:</strong> real-world actions &amp; data</li>
+                    <li><strong>Loop:</strong> keep going until goal is met</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">OpenAI Function Calling</div>
+            <div class="card-content">
+                <ul>
+                    <li>Define tools as <strong>JSON schemas</strong> (name, description, parameters)</li>
+                    <li>Pass schemas to model; model returns <strong>tool call objects</strong></li>
+                    <li>Your code executes the tool, feeds result back</li>
+                    <li>Key: model decides <em>whether</em> and <em>when</em> to call tools</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box mb-small">
+        <div class="info-box-title">The Manual Agent Loop</div>
+        <div class="flow">
+            <span class="flow-step">Call LLM</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">Tool call?</span>
+            <span class="flow-arrow">→ Yes →</span>
+            <span class="flow-step">Execute tool</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">Append result</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">Call LLM again</span>
+            <span class="flow-arrow">→ No tool call →</span>
+            <span class="flow-step">Return answer</span>
+        </div>
+        <p style="font-size:8.5pt;margin-top:4pt;"><strong>Key insight:</strong> AgentExecutor IS a graph under the hood — LangGraph makes this loop explicit and controllable.</p>
+    </div>
+
+    <!-- ═══ SECTION 2: LangGraph Intro ═══ -->
+    <div class="section-title">1. Intro to LangGraph — Why a Framework?</div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">Why LangGraph over Manual Loops?</div>
+            <div class="card-content">
+                <ul>
+                    <li><strong>State management</strong> — built-in, typed</li>
+                    <li><strong>Cycles</strong> — retry and loop natively</li>
+                    <li><strong>Conditional routing</strong> — branch on any condition</li>
+                    <li><strong>Streaming</strong> — token-by-token and step-by-step</li>
+                    <li><strong>Persistence</strong> — checkpoints between steps</li>
+                    <li><strong>Observability</strong> — LangSmith tracing built-in</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">LangChain Building Blocks</div>
+            <div class="card-content">
+                <ul>
+                    <li><strong>Model access:</strong> <code>ChatOpenAI(model="gpt-4o")</code></li>
+                    <li><strong>Prompt templates:</strong> reusable strings with dynamic variables</li>
+                    <li><strong>Chains:</strong> composable LLM + prompt blocks</li>
+                    <li><strong>Structured outputs:</strong> <code>model.with_structured_output(MyModel)</code></li>
+                    <li><strong>Model + tools:</strong> <code>model.bind_tools(tools)</code></li>
+                    <li><strong>Pydantic:</strong> validate structured output schemas</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 3: Core Concepts ═══ -->
+    <div class="section-title">2. LangGraph Core Concepts — State · Nodes · Edges</div>
+
+    <div class="grid-3">
+        <div class="definition-card">
+            <div class="term">State</div>
+            <div class="definition">Shared data structure (TypedDict or Pydantic model) — the current snapshot of your application. Passed into every node; returned updates are merged back.</div>
+        </div>
+        <div class="definition-card">
+            <div class="term">Nodes</div>
+            <div class="definition">Python functions that receive the current State as input, perform computation or side-effects, and return a dict of updated State fields.</div>
+        </div>
+        <div class="definition-card">
+            <div class="term">Edges</div>
+            <div class="definition">Connections between nodes. Fixed edges always go to the same next node. Conditional edges call a routing function to choose dynamically.</div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Building a Basic Graph</div>
+            <pre><code>from langgraph.graph import StateGraph, START, END
+from typing import TypedDict
+
+class MyState(TypedDict):
+    messages: list
+    count: int
+
+def my_node(state: MyState) -> dict:
+    return {"count": state["count"] + 1}
+
+def router(state: MyState) -> str:
+    return "done" if state["count"] >= 3 else "again"
+
+graph = StateGraph(MyState)
+graph.add_node("worker", my_node)
+graph.add_edge(START, "worker")
+graph.add_conditional_edges(
+    "worker", router, {"again": "worker", "done": END}
+)
+app = graph.compile()</code></pre>
+        </div>
+        <div class="card">
+            <div class="card-title">MessagesState &amp; Reducers</div>
+            <div class="card-content">
+                <p style="margin-bottom:5pt;">Use <code>MessagesState</code> for conversation history — it automatically <strong>appends</strong> messages instead of replacing the list.</p>
+                <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">from langgraph.graph import MessagesState
+
+class AgentState(MessagesState):
+    pass  # add extra fields here</pre>
+                <p style="margin-top:5pt;font-size:8.5pt;">Custom reducers: annotate fields with <code>Annotated[list, add_messages]</code> or your own merge function.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">Command Primitive (Post-1.0)</div>
+            <div class="card-content">
+                <p style="margin-bottom:5pt;"><strong>Command</strong> combines state update + routing in a single return. Replaces the dict-return + separate conditional edge pattern.</p>
+                <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">from langgraph.types import Command
+
+def my_node(state):
+    return Command(
+        update={"result": "done"},
+        goto="next_node"  # or END
+    )</pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Multi-Schema State</div>
+            <div class="card-content">
+                <p style="margin-bottom:5pt;">A graph can have separate schemas for three purposes:</p>
+                <ul>
+                    <li><strong>Internal state:</strong> all fields needed during execution</li>
+                    <li><strong>Input schema:</strong> what callers provide (<code>input_schema=</code>)</li>
+                    <li><strong>Output schema:</strong> what the graph returns (<code>output_schema=</code>)</li>
+                </ul>
+                <p style="margin-top:5pt;font-size:8.5pt;">Ask: what do I need to <em>track</em> vs. what do I need to <em>expose</em>?</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 4: ReAct Loop ═══ -->
+    <div class="section-title">ReAct Agent Loop</div>
+
+    <div class="step-container">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">Reason</div>
+            <div class="step-content">LLM receives state, decides next action or tool to call</div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-title">Act</div>
+            <div class="step-content">Tool node executes the tool call from the LLM response</div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">Observe</div>
+            <div class="step-content">Tool result appended to state messages</div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-title">Repeat</div>
+            <div class="step-content">Conditional edge: more tools needed → back to LLM; done → END</div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 5: Research Agent ═══ -->
+    <div class="section-title">3. Local Research Agent (LangGraph + Ollama)</div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">Research Agent Pattern</div>
+            <div class="card-content">
+                <div class="flow" style="flex-direction:column;align-items:flex-start;gap:3pt;">
+                    <span><span class="flow-step">1</span> Generate search queries from user question</span>
+                    <span><span class="flow-step">2</span> Perform web searches (Tavily, SerpAPI)</span>
+                    <span><span class="flow-step">3</span> Summarize search results</span>
+                    <span><span class="flow-step">4</span> Reflect — identify knowledge gaps</span>
+                    <span><span class="flow-step">5</span> Repeat if gaps remain, else return answer</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Key Patterns</div>
+            <div class="card-content">
+                <ul>
+                    <li><strong>ConfigurableRunnableConfig:</strong> parameterize agents (model choice, depth) without re-compiling the graph</li>
+                    <li><strong>Multi-tool prompts:</strong> explicit tool descriptions in system prompt improve reliability</li>
+                    <li><strong>RAG chunking:</strong> recall &gt; precision — a missed chunk can't help; semantic chunking beats fixed-size for retrieval quality</li>
+                    <li><strong>Local LLMs:</strong> use Ollama for offline / private data</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 6: Post-1.0 Features ═══ -->
+    <div class="section-title">4. LangGraph Post-1.0 Features</div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">Functional API (@entrypoint / @task)</div>
+            <div class="card-content">
+                <p style="margin-bottom:5pt;">Write graphs as regular Python functions using decorators — no explicit node/edge wiring. LangGraph 0.3+</p>
+                <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">from langgraph.func import entrypoint, task
+
+@task
+def call_model(messages):
+    return llm.invoke(messages)
+
+@entrypoint()
+def my_graph(state):
+    result = call_model(state["messages"]).result()
+    return {"messages": result}</pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">MCP Integration</div>
+            <div class="card-content">
+                <p style="margin-bottom:5pt;"><strong>Model Context Protocol</strong> — connect agents to any MCP server. Install: <code>pip install langchain-mcp-adapters</code></p>
+                <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">from langchain_mcp_adapters.client import (
+    MultiServerMCPClient
+)
+client = MultiServerMCPClient({
+    "filesystem": {
+        "command": "npx",
+        "args": ["-y",
+          "@modelcontextprotocol/server-filesystem",
+          "/path/to/dir"]
+    }
+})
+tools = await client.get_tools()</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">Durable Execution</div>
+            <div class="card-content">
+                <ul>
+                    <li>LangGraph Platform provides <strong>resume-on-failure</strong>: if a run is interrupted (network error, timeout, restart), it resumes from the last checkpoint</li>
+                    <li>Built on the same checkpointer system (see Notebook 5.0)</li>
+                    <li>No extra code required — configure in <code>langgraph.json</code></li>
+                    <li>Critical for long-running agents in production</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Subgraphs (overview)</div>
+            <div class="card-content">
+                <ul>
+                    <li>Compile a StateGraph → use it as a <strong>node</strong> in another graph</li>
+                    <li>Foundation for multi-agent architectures</li>
+                    <li>Each agent/team is self-contained; parent orchestrates</li>
+                    <li>Full coverage in Notebook 6.0</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 7: Persistence ═══ -->
+    <div class="section-title">5. Persistence &amp; Checkpointers</div>
+
+    <div class="table-card mb-small">
+        <div class="table-card-header">Checkpointer Options</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Checkpointer</th>
+                    <th>Use Case</th>
+                    <th>Install</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>MemorySaver</code></td>
+                    <td>Dev / testing</td>
+                    <td>Built-in</td>
+                    <td>Lost on process exit. Never use in prod.</td>
+                </tr>
+                <tr>
+                    <td><code>SqliteSaver</code></td>
+                    <td>Local dev, single-node</td>
+                    <td><code>langgraph-checkpoint-sqlite</code></td>
+                    <td>Survives restarts. Good for prototypes.</td>
+                </tr>
+                <tr>
+                    <td><code>PostgresSaver</code></td>
+                    <td>Production</td>
+                    <td><code>langgraph-checkpoint-postgres</code></td>
+                    <td>Concurrency, durability, horizontal scale.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Checkpointer Usage Pattern</div>
+            <pre><code>from langgraph.checkpoint.memory import MemorySaver
+from langgraph.checkpoint.sqlite import SqliteSaver
+
+# Compile with checkpointer
+checkpointer = MemorySaver()
+app = graph.compile(checkpointer=checkpointer)
+
+# ALWAYS pass thread_id in config
+config = {"configurable": {"thread_id": "user-123"}}
+
+# Same thread_id = same conversation
+app.invoke({"messages": [...]}, config=config)
+
+# Inspect state
+state = app.get_state(config)
+history = list(app.get_state_history(config))
+
+# Override state manually
+app.update_state(config, {"messages": [correction]})</code></pre>
+        </div>
+        <div class="card">
+            <div class="card-title">Cross-Thread Store</div>
+            <div class="card-content">
+                <p style="margin-bottom:5pt;">Checkpointers are <strong>scoped to a single thread</strong>. For data shared across conversations use the <code>Store</code> abstraction:</p>
+                <ul>
+                    <li>User profiles, learned preferences</li>
+                    <li>Shared knowledge across sessions</li>
+                    <li><code>InMemoryStore</code> (dev) or external DB (prod)</li>
+                </ul>
+                <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;margin-top:5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">from langgraph.store.memory import InMemoryStore
+store = InMemoryStore()
+app = graph.compile(
+    checkpointer=checkpointer,
+    store=store
+)</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 8: Subgraphs ═══ -->
+    <div class="section-title">6. Subgraphs — Multi-Agent Composition</div>
+
+    <div class="comparison-grid">
+        <div class="comparison-item">
+            <div class="comparison-header">Pattern 1 — Shared State Keys</div>
+            <p style="font-size:8.5pt;margin-bottom:5pt;">When the subgraph's schema <strong>shares keys</strong> with the parent, add the compiled subgraph directly as a node. LangGraph auto-passes matching keys in and merges output keys back.</p>
+            <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">sub = subgraph.compile()
+# Add directly — shared keys handled auto
+parent.add_node("agent", sub)</pre>
+            <p style="font-size:8pt;margin-top:4pt;color:#555;">Simplest and most common pattern.</p>
+        </div>
+        <div class="comparison-item">
+            <div class="comparison-header">Pattern 2 — Different Schemas</div>
+            <p style="font-size:8.5pt;margin-bottom:5pt;">When schemas differ, wrap the subgraph in a node function that handles translation both ways.</p>
+            <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">sub = subgraph.compile()
+
+def agent_node(state: ParentState):
+    # 1. Translate parent → subgraph
+    sub_input = {"query": state["input"]}
+    # 2. Invoke subgraph
+    result = sub.invoke(sub_input)
+    # 3. Translate output → parent
+    return {"output": result["answer"]}
+
+parent.add_node("agent", agent_node)</pre>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">Persistence in Subgraphs</div>
+            <div class="card-content">
+                <ul>
+                    <li>Compile the <strong>parent</strong> graph with a checkpointer</li>
+                    <li>All subgraph invocations within that thread are automatically checkpointed — no extra wiring</li>
+                    <li>Per-invocation persistence (subgraph has its own checkpointer) is useful for isolated agents</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">When to Use Subgraphs</div>
+            <div class="card-content">
+                <ul>
+                    <li><strong>Multi-agent teams</strong> — each agent is a subgraph; parent orchestrates</li>
+                    <li><strong>Reusable modules</strong> — package once, embed in many parents</li>
+                    <li><strong>Failure isolation</strong> — a crash in a subgraph doesn't kill the parent</li>
+                    <li><strong>Different state schemas</strong> — specialized agents with their own state</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 9: Deployment ═══ -->
+    <div class="section-title">7. Deployment — LangGraph Platform</div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-title">Project Structure</div>
+            <div class="card-content">
+                <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">my-agent/
+├── src/
+│   └── my_agent/
+│       ├── __init__.py
+│       └── graph.py      # StateGraph def
+├── langgraph.json         # Manifest
+├── pyproject.toml
+└── .env</pre>
+                <p style="font-size:8.5pt;margin-top:5pt;"><strong>langgraph.json:</strong></p>
+                <pre style="background:#f0f0f0;padding:5pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./src/my_agent/graph.py:graph"
+  },
+  "env": ".env"
+}</pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">CLI Commands &amp; Deployment Options</div>
+            <div class="card-content">
+                <p style="margin-bottom:4pt;font-weight:700;">Local Development</p>
+                <pre style="background:#f0f0f0;padding:4pt;font-size:7.5pt;overflow:hidden;white-space:pre-wrap;word-break:break-all;font-family:'Courier New',monospace;">langgraph dev   # port 2024, hot-reload, Studio UI
+langgraph build # build container image
+langgraph deploy # push to LangSmith Deployments</pre>
+                <p style="margin-top:6pt;margin-bottom:4pt;font-weight:700;">Deployment Options</p>
+                <ul style="font-size:8.5pt;">
+                    <li><strong>Cloud SaaS</strong> — hosted by LangChain (paid)</li>
+                    <li><strong>Self-Hosted Cloud (BYOC)</strong> — your infra, their runtime</li>
+                    <li><strong>Self-Hosted Enterprise</strong> — full on-prem</li>
+                    <li><strong>Local</strong> — <code>langgraph dev</code> for dev only</li>
+                </ul>
+                <p style="margin-top:5pt;font-size:8.5pt;"><strong>Platform provides:</strong> managed runtime, persistence/threads/assistants APIs, Studio visual debugger, durable execution</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 10: Quick Reference ═══ -->
+    <div class="section-title">Key APIs — Quick Reference</div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Graph Construction</div>
+            <pre><code>from langgraph.graph import (
+    StateGraph, MessagesState, START, END
+)
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.types import Command
+
+# Build
+graph = StateGraph(MyState)
+graph.add_node("node_a", fn_a)
+graph.add_node("node_b", fn_b)
+graph.add_edge(START, "node_a")
+graph.add_edge("node_a", "node_b")
+graph.add_conditional_edges(
+    "node_b", router,
+    {"yes": "node_a", "no": END}
+)
+app = graph.compile(
+    checkpointer=MemorySaver()
+)</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Invocation &amp; Inspection</div>
+            <pre><code># Config with thread_id (required for checkpointing)
+config = {"configurable": {"thread_id": "t1"}}
+
+# Invoke (blocking)
+result = app.invoke({"messages": [...]}, config)
+
+# Stream steps
+for chunk in app.stream(input, config):
+    print(chunk)
+
+# Stream tokens
+for token in app.astream_events(input, config):
+    print(token)
+
+# Inspect / edit state
+state = app.get_state(config)
+history = list(app.get_state_history(config))
+app.update_state(config, {"key": "value"})
+
+# Command return (node function)
+return Command(update={"x": 1}, goto="next")</code></pre>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="code-card">
+            <div class="code-card-header">Prebuilt ReAct Agent</div>
+            <pre><code>from langgraph.prebuilt import create_react_agent
+from langchain_openai import ChatOpenAI
+from langchain_community.tools.tavily_search import (
+    TavilySearchResults
+)
+
+model = ChatOpenAI(model="gpt-4o")
+tools = [TavilySearchResults(max_results=3)]
+
+agent = create_react_agent(model, tools)
+result = agent.invoke({
+    "messages": [("human", "What is LangGraph?")]
+})</code></pre>
+        </div>
+        <div class="code-card">
+            <div class="code-card-header">Model + Tools Setup</div>
+            <pre><code>from langchain_openai import ChatOpenAI
+from langchain_core.tools import tool
+from pydantic import BaseModel
+
+@tool
+def my_tool(query: str) -> str:
+    """Search for information."""
+    return search(query)
+
+# Bind tools to model
+model = ChatOpenAI(model="gpt-4o")
+model_with_tools = model.bind_tools([my_tool])
+
+# Structured output
+class MyOutput(BaseModel):
+    answer: str
+    confidence: float
+
+structured = model.with_structured_output(MyOutput)</code></pre>
+        </div>
+    </div>
+
+    <!-- ═══ SECTION 11: Key Takeaways ═══ -->
+    <div class="section-title">Course Summary</div>
+
+    <div class="key-points">
+        <div class="key-points-title">Learning Path — 8 Notebooks</div>
+        <ul>
+            <li><strong>0.0 — Agents from Scratch:</strong> agent loop, OpenAI function calling, tools as JSON schemas, manual ReAct implementation</li>
+            <li><strong>1.0 — Intro LangGraph:</strong> LangChain components (models, prompts, chains), structured outputs, <code>bind_tools</code>, AgentExecutor as a graph</li>
+            <li><strong>2.0 — Core Concepts:</strong> State / Nodes / Edges, conditional routing, Command primitive, MessagesState, multi-schema state, full ReAct loop</li>
+            <li><strong>3.0 — Research Agent:</strong> generate-search-summarize-reflect loop, ConfigurableRunnableConfig, multi-tool prompting, local Ollama models</li>
+            <li><strong>4.0 — Post-1.0 Features:</strong> Command, Functional API (@entrypoint/@task), MCP integration, durable execution</li>
+            <li><strong>5.0 — Persistence:</strong> MemorySaver → SqliteSaver → PostgresSaver, thread_id pattern, state inspection &amp; update, cross-thread Store</li>
+            <li><strong>6.0 — Subgraphs:</strong> shared-key pattern (direct node), different-schema pattern (wrapper fn), persistence in subgraphs, multi-agent architectures</li>
+            <li><strong>7.0 — Deployment:</strong> langgraph.json manifest, <code>langgraph dev</code> local Studio, <code>langgraph deploy</code> to LangSmith, four deployment tiers</li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Automata Learning Lab | O'Reilly Live Training: Getting Started with LLM Agents using LangChain &amp; LangGraph</p>
+    </footer>
+
+</body>
+</html>
