@@ -32,17 +32,18 @@ from typing import Literal
 
 from langchain.chat_models import init_chat_model
 from langchain_core.runnables import RunnableConfig
+from langgraph.config import get_stream_writer
 from langgraph.graph import END, START, StateGraph
 from tavily import TavilyClient
 
-from demos.research_agent.models import (
+from research_agent.models import (
     Reflection,
     ResearchInput,
     ResearchOutput,
     ResearchState,
     SearchQuery,
 )
-from demos.research_agent.prompts import (
+from research_agent.prompts import (
     COMPRESS_NOTES_PROMPT,
     QUERY_WRITER_PROMPT,
     REFLECTION_PROMPT,
@@ -57,10 +58,10 @@ from demos.research_agent.prompts import (
 # `RunnableConfig.configurable`. Mirrors the educational style of
 # langchain-ai/langgraph-101's `researcher/graph.py`.
 
-RESEARCH_MODEL = "openai:gpt-4.1-mini"
+RESEARCH_MODEL = "openai:gpt-5.6-luna"
 MAX_RESEARCH_LOOPS = 3              # Cap iterations so demos stay cheap.
 MAX_RESULTS_PER_SEARCH = 3          # Tavily results per query.
-MAX_TOKENS_PER_SOURCE = 1000        # Rough budget per source in chars/4.
+MAX_TOKENS_PER_SOURCE = 5000        # Rough budget per source in chars/4.
 
 
 # =====================================================================
@@ -132,6 +133,11 @@ def generate_query(state: ResearchState, config: RunnableConfig) -> dict:
         research_topic=state.research_topic,
     )
     result: SearchQuery = model.invoke(prompt)
+    # Custom stream event: node updates are filtered through the graph's
+    # output schema by the LangGraph server, so UIs never see
+    # intermediate fields like `search_query`. `get_stream_writer()`
+    # events bypass that filter (clients opt in via stream_mode="custom").
+    get_stream_writer()({"node": "generate_query", "query": result.query, "rationale": result.rationale})
     return {"search_query": result.query}
 
 
@@ -144,6 +150,12 @@ def web_research(state: ResearchState) -> dict:
         include_raw_content=True,
     )
     note_text, source_urls = _format_search_results(raw)
+    get_stream_writer()({
+        "node": "web_research",
+        "loop": state.loop_count + 1,
+        "sources_added": len(source_urls),
+        "total_sources": len(state.sources) + len(source_urls),
+    })
     return {
         "raw_notes": state.raw_notes + [note_text],
         "sources": state.sources + source_urls,
@@ -166,6 +178,11 @@ def reflect(state: ResearchState) -> dict:
         notes="\n\n".join(state.raw_notes),
     )
     result: Reflection = model.invoke(prompt)
+    get_stream_writer()({
+        "node": "reflect",
+        "knowledge_gap": result.knowledge_gap,
+        "follow_up_query": result.follow_up_query,
+    })
     return {"search_query": result.follow_up_query}
 
 
@@ -197,6 +214,7 @@ def compress_notes(state: ResearchState) -> dict:
         raw_notes="\n\n".join(state.raw_notes),
     )
     result = model.invoke(prompt)
+    get_stream_writer()({"node": "compress_notes", "chars": len(result.content)})
     return {"compressed_notes": result.content}
 
 
@@ -212,6 +230,7 @@ def write_report(state: ResearchState) -> dict:
 
     sources_block = "\n".join(f"- {s}" for s in state.sources)
     final = f"{result.content}\n\n## Sources\n{sources_block}"
+    get_stream_writer()({"node": "write_report", "report_chars": len(final)})
     return {"final_report": final}
 
 

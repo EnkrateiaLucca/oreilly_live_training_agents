@@ -11,6 +11,6 @@ Architecture:
     prompts.py  — named prompt constants, one per node
 """
 
-from demos.research_agent.graph import graph
+from research_agent.graph import graph
 
 __all__ = ["graph"]

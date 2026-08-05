@@ -1,0 +1,5 @@
+langgraph>=0.2.60
+langchain>=0.3.0
+langchain-openai>=0.2.0
+tavily-python>=0.5.0
+pydantic>=2.0

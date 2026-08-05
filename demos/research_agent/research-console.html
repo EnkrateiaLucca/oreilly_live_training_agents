@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Agent Console</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.5/purify.min.js"></script>
+<style>
+* { box-sizing: border-box; }
+:root {
+  --bg: #f6f5f1;
+  --card: #ffffff;
+  --ink: #1a1a1a;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --green: #16a34a;
+  --amber: #d97706;
+  --red: #dc2626;
+  --border: #e5e7eb;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0; padding: 24px;
+  background: var(--bg); color: var(--ink);
+  line-height: 1.6;
+}
+.wrap { max-width: 1200px; margin: 0 auto; }
+header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+header h1 { font-size: 22px; margin: 0; }
+header .sub { color: var(--muted); font-size: 14px; }
+.status { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); margin-left: auto; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: #9ca3af; }
+.dot.up { background: var(--green); }
+.dot.down { background: var(--red); }
+
+.layout { display: grid; grid-template-columns: 340px 1fr; gap: 18px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px; margin-bottom: 16px;
+}
+.card h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 12px; }
+
+textarea, input[type="text"] {
+  width: 100%; padding: 12px; font-size: 16px; font-family: inherit;
+  border: 1px solid #d1d5db; border-radius: 8px; resize: vertical; background: #fff;
+}
+textarea:focus, input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+button {
+  background: var(--accent); color: #fff; border: none; padding: 11px 20px;
+  border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600;
+}
+button:hover { background: var(--accent-dark); }
+button:disabled { background: #9ca3af; cursor: not-allowed; }
+.row { display: flex; gap: 10px; margin-top: 10px; align-items: center; }
+.hint { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+.hint code { background: #eef0f3; padding: 1px 5px; border-radius: 4px; }
+
+.error { background: #fef2f2; border: 1px solid #fecaca; color: var(--red); padding: 12px; border-radius: 8px; margin: 12px 0; font-size: 14px; }
+
+/* pipeline timeline */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.step { display: grid; grid-template-columns: 26px 1fr; gap: 12px; }
+.step .rail { display: flex; flex-direction: column; align-items: center; }
+.step .node-dot {
+  width: 12px; height: 12px; border-radius: 50%; border: 2.5px solid var(--accent);
+  background: #fff; margin-top: 5px; flex-shrink: 0;
+}
+.step.done .node-dot { background: var(--accent); }
+.step .line { width: 2px; flex: 1; background: var(--border); margin: 2px 0; }
+.step:last-child .line { display: none; }
+.step .body { padding-bottom: 16px; min-width: 0; }
+.step .name { font-weight: 650; font-size: 14px; }
+.step .name .badge {
+  font-weight: 500; font-size: 11.5px; color: var(--muted);
+  background: #eef0f3; border-radius: 10px; padding: 1px 8px; margin-left: 8px;
+}
+.step .detail { font-size: 13.5px; color: #374151; margin-top: 2px; overflow-wrap: anywhere; }
+.step .detail em { color: var(--muted); }
+.spinner {
+  display: inline-block; width: 13px; height: 13px; margin-left: 8px; vertical-align: -2px;
+  border: 2px solid var(--border); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* history */
+.hist-item {
+  padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+  margin-bottom: 8px; cursor: pointer; font-size: 14px; background: #fff;
+}
+.hist-item:hover { border-color: var(--accent); }
+.hist-item.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(37,99,235,.12); }
+.hist-item .t { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hist-item .d { font-size: 12px; color: var(--muted); }
+.hist-empty { color: var(--muted); font-size: 13.5px; }
+
+/* report */
+.report-card { padding: 26px 30px; }
+.report-actions { display: flex; gap: 8px; margin-bottom: 6px; }
+.report-actions button { font-size: 13px; padding: 7px 14px; background: #fff; color: var(--ink); border: 1px solid var(--border); font-weight: 500; }
+.report-actions button:hover { border-color: var(--accent); color: var(--accent); background: #fff; }
+#report { font-size: 15.5px; }
+#report h1 { font-size: 24px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+#report h2 { font-size: 19px; margin-top: 28px; }
+#report a { color: var(--accent); }
+#report code { background: #eef0f3; padding: 1px 5px; border-radius: 4px; font-size: 13.5px; }
+#report pre { background: #1e293b; color: #e2e8f0; padding: 14px; border-radius: 8px; overflow-x: auto; }
+#report blockquote { border-left: 3px solid var(--border); margin-left: 0; padding-left: 14px; color: var(--muted); }
+.placeholder { color: var(--muted); font-size: 14.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🔍 Research Agent Console</h1>
+    <span class="sub">LangGraph deployment demo — O'Reilly Live Training</span>
+    <span class="status"><span class="dot" id="statusDot"></span><span id="statusText">checking server…</span></span>
+  </header>
+
+  <div class="layout">
+    <div><!-- left column -->
+      <div class="card">
+        <h2>New research run</h2>
+        <textarea id="topic" rows="3" placeholder="What do you want researched?&#10;e.g. Recent advances in retrieval-augmented generation"></textarea>
+        <div class="row">
+          <button id="runBtn">Run research</button>
+        </div>
+        <div class="hint">Calls the graph <code>research_agent</code> served by <code>langgraph dev</code> at <span id="baseUrlLabel"></span>. The agent searches the web in a reflect-loop, then compresses notes and writes a cited report.</div>
+        <div id="error"></div>
+      </div>
+
+      <div class="card">
+        <h2>History</h2>
+        <div id="history"></div>
+      </div>
+    </div>
+
+    <div><!-- right column -->
+      <div class="card">
+        <h2>Agent pipeline</h2>
+        <div class="timeline" id="timeline">
+          <div class="placeholder">Run a topic to watch the graph execute node-by-node: generate_query → web_research ⟲ reflect → compress_notes → write_report.</div>
+        </div>
+      </div>
+
+      <div class="card report-card">
+        <h2>Report</h2>
+        <div class="report-actions" id="reportActions" style="display:none">
+          <button id="copyBtn">Copy markdown</button>
+          <button id="dlBtn">Download .md</button>
+        </div>
+        <div id="report"><div class="placeholder">The final markdown report will render here.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const BASE_URL = localStorage.getItem('LG_BASE_URL') || 'http://127.0.0.1:2024';
+const GRAPH_ID = 'research_agent';
+const HISTORY_KEY = 'research_console_history_v1';
+
+document.getElementById('baseUrlLabel').textContent = BASE_URL;
+
+// ---- friendly labels for each graph node ----
+// Details come from CUSTOM stream events (get_stream_writer in graph.py):
+// the LangGraph server filters `updates` events through the graph's
+// output schema, so intermediate fields never reach the client that way.
+const trunc = (s, n = 130) => (s && s.length > n ? s.slice(0, n) + '…' : s || '');
+const NODE_META = {
+  generate_query:  { label: 'Generate query',  detail: u => u.query ? `→ “${trunc(u.query)}”` : '' },
+  web_research:    { label: 'Web research',    detail: u => u.loop ? `search loop ${u.loop} — +${u.sources_added} sources (${u.total_sources} total)` : 'searching…' },
+  reflect:         { label: 'Reflect',         detail: u => u.follow_up_query ? `gap: ${trunc(u.knowledge_gap, 100)} → next: “${trunc(u.follow_up_query, 90)}”` : 'assessing coverage' },
+  compress_notes:  { label: 'Compress notes',  detail: u => u.chars ? `${u.chars.toLocaleString()} chars of dense notes` : '' },
+  write_report:    { label: 'Write report',    detail: () => 'final markdown report ready' },
+};
+
+// ---- server health ----
+async function checkHealth() {
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusText');
+  try {
+    const r = await fetch(BASE_URL + '/ok', { signal: AbortSignal.timeout(3000) });
+    const ok = r.ok;
+    dot.className = 'dot ' + (ok ? 'up' : 'down');
+    txt.textContent = ok ? 'server connected' : 'server error';
+  } catch {
+    dot.className = 'dot down';
+    txt.textContent = 'server unreachable — run `langgraph dev`';
+  }
+}
+checkHealth();
+setInterval(checkHealth, 10000);
+
+// ---- timeline rendering ----
+let steps = [];
+function resetTimeline() {
+  steps = [];
+  document.getElementById('timeline').innerHTML = '';
+}
+function addStep(node, update, running = false) {
+  const meta = NODE_META[node] || { label: node, detail: () => '' };
+  const el = document.createElement('div');
+  el.className = 'step' + (running ? '' : ' done');
+  el.innerHTML = `
+    <div class="rail"><div class="node-dot"></div><div class="line"></div></div>
+    <div class="body">
+      <div class="name"></div>
+      <div class="detail"></div>
+    </div>`;
+  el.querySelector('.name').textContent = meta.label;
+  const badge = document.createElement('span');
+  badge.className = 'badge';
+  badge.textContent = node;
+  el.querySelector('.name').appendChild(badge);
+  if (running) {
+    const sp = document.createElement('span');
+    sp.className = 'spinner';
+    el.querySelector('.name').appendChild(sp);
+  }
+  el.querySelector('.detail').textContent = update ? meta.detail(update) : '';
+  document.getElementById('timeline').appendChild(el);
+  steps.push({ node, el, meta });
+  el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  return el;
+}
+function completeStep(el, node, update) {
+  const meta = NODE_META[node] || { label: node, detail: () => '' };
+  el.classList.add('done');
+  el.querySelector('.spinner')?.remove();
+  // a custom event already wrote a richer detail — keep it
+  if (el.dataset.custom !== '1') {
+    el.querySelector('.detail').textContent = meta.detail(update || {});
+  }
+}
+function setCustomDetail(el, node, payload) {
+  const meta = NODE_META[node] || { label: node, detail: () => '' };
+  el.dataset.custom = '1';
+  el.querySelector('.detail').textContent = meta.detail(payload);
+}
+
+// ---- report rendering ----
+let currentReport = '';
+let currentTopic = '';
+function renderReport(md) {
+  currentReport = md || '';
+  const target = document.getElementById('report');
+  if (!md) {
+    target.innerHTML = '<div class="placeholder">The final markdown report will render here.</div>';
+    document.getElementById('reportActions').style.display = 'none';
+    return;
+  }
+  target.innerHTML = DOMPurify.sanitize(marked.parse(md));
+  target.querySelectorAll('a').forEach(a => {
+    a.target = '_blank'; a.rel = 'noopener';
+    // "[source: <url>]" citations linkify with the closing bracket glued on
+    a.href = a.href.replace(/(\]|%5D)+$/, '');
+  });
+  document.getElementById('reportActions').style.display = 'flex';
+}
+
+// ---- history (localStorage) ----
+function loadHistory() { try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; } catch { return []; } }
+function saveHistory(items) { localStorage.setItem(HISTORY_KEY, JSON.stringify(items.slice(0, 25))); }
+function renderHistory(activeIdx = -1) {
+  const box = document.getElementById('history');
+  const items = loadHistory();
+  if (!items.length) { box.innerHTML = '<div class="hist-empty">No runs yet.</div>'; return; }
+  box.innerHTML = '';
+  items.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'hist-item' + (i === activeIdx ? ' active' : '');
+    const t = document.createElement('div'); t.className = 't'; t.textContent = item.topic;
+    const d = document.createElement('div'); d.className = 'd';
+    d.textContent = new Date(item.when).toLocaleString() + ' · ' + (item.nodes || 0) + ' node runs';
+    el.append(t, d);
+    el.onclick = () => {
+      resetTimeline();
+      (item.timeline || []).forEach(s => addStep(s.node, s.update));
+      currentTopic = item.topic;
+      renderReport(item.report);
+      renderHistory(i);
+    };
+    box.appendChild(el);
+  });
+}
+renderHistory();
+
+// ---- run via SSE stream ----
+async function runResearch() {
+  const topic = document.getElementById('topic').value.trim();
+  const btn = document.getElementById('runBtn');
+  const errBox = document.getElementById('error');
+  errBox.innerHTML = '';
+  if (!topic) { errBox.innerHTML = '<div class="error">Enter a research topic first.</div>'; return; }
+
+  btn.disabled = true; btn.textContent = 'Researching…';
+  resetTimeline(); renderReport(null);
+  currentTopic = topic;
+  const runTimeline = [];
+  let pendingEl = addStep('generate_query', null, true);
+  let pendingNode = 'generate_query';
+  let finalReport = null;
+
+  try {
+    const resp = await fetch(BASE_URL + '/runs/stream', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        assistant_id: GRAPH_ID,
+        input: { research_topic: topic },
+        stream_mode: ['updates', 'custom'],
+      }),
+    });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status + ' from /runs/stream');
+
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = '', eventName = '';
+
+    let lastCustom = {};   // node -> latest custom payload (survives into history)
+
+    const handleCustom = (payload) => {
+      const node = payload && payload.node;
+      if (!node) return;
+      lastCustom[node] = payload;
+      if (pendingEl && pendingNode === node) {
+        setCustomDetail(pendingEl, node, payload);
+      } else {
+        // node started that we didn't predict (router branch) — show it live
+        if (pendingEl) { pendingEl.querySelector('.spinner')?.remove(); pendingEl.remove(); }
+        pendingEl = addStep(node, null, true);
+        pendingNode = node;
+        setCustomDetail(pendingEl, node, payload);
+      }
+    };
+
+    const handleUpdate = (payload) => {
+      for (const [node, update] of Object.entries(payload)) {
+        if (node.startsWith('__')) continue;   // __interrupt__ etc.
+        // complete the pending step with real data
+        if (pendingEl && pendingNode === node) {
+          completeStep(pendingEl, node, update);
+        } else {
+          if (pendingEl) { pendingEl.querySelector('.spinner')?.remove(); pendingEl.classList.add('done'); }
+          const el = addStep(node, update);
+          completeStep(el, node, update);
+        }
+        runTimeline.push({ node, update: { ...slim(update), ...(lastCustom[node] || {}) } });
+        delete lastCustom[node];
+        if (update && update.final_report) finalReport = update.final_report;
+        // predict next node for a live spinner
+        const next = nextNode(node, update);
+        pendingEl = next ? addStep(next, null, true) : null;
+        pendingNode = next;
+      }
+    };
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop();
+      for (const line of lines) {
+        if (line.startsWith('event:')) eventName = line.slice(6).trim();
+        else if (line.startsWith('data:')) {
+          const data = line.slice(5).trim();
+          if (!data) continue;
+          let payload; try { payload = JSON.parse(data); } catch { continue; }
+          if (eventName === 'updates') handleUpdate(payload);
+          if (eventName === 'custom') handleCustom(payload);
+          if (eventName === 'error') throw new Error(payload.message || JSON.stringify(payload));
+        }
+      }
+    }
+
+    if (pendingEl) { pendingEl.querySelector('.spinner')?.remove(); pendingEl.remove(); }
+    if (!finalReport) throw new Error('Stream ended without a final report.');
+    renderReport(finalReport);
+
+    const items = loadHistory();
+    items.unshift({ topic, when: Date.now(), report: finalReport, timeline: runTimeline, nodes: runTimeline.length });
+    saveHistory(items);
+    renderHistory(0);
+  } catch (e) {
+    errBox.innerHTML = '';
+    const div = document.createElement('div');
+    div.className = 'error';
+    div.textContent = 'Run failed: ' + e.message;
+    errBox.appendChild(div);
+    if (pendingEl) pendingEl.querySelector('.spinner')?.remove();
+  } finally {
+    btn.disabled = false; btn.textContent = 'Run research';
+  }
+}
+
+// graph shape: generate_query → web_research → reflect → (web_research | compress_notes) → write_report
+function nextNode(node, update) {
+  if (node === 'generate_query') return 'web_research';
+  if (node === 'web_research') return 'reflect';
+  if (node === 'reflect') return null; // router decides; next update reveals the branch
+  if (node === 'compress_notes') return 'write_report';
+  return null;
+}
+// keep history entries small: drop bulky fields
+function slim(update) {
+  if (!update) return update;
+  const { raw_notes, compressed_notes, ...rest } = update;
+  if (compressed_notes) rest.compressed_notes = compressed_notes.slice(0, 200);
+  if (rest.final_report) rest.final_report = '';  // report stored once at top level
+  return rest;
+}
+
+// ---- report actions ----
+document.getElementById('copyBtn').onclick = async (e) => {
+  await navigator.clipboard.writeText(currentReport);
+  e.target.textContent = 'Copied!';
+  setTimeout(() => e.target.textContent = 'Copy markdown', 1500);
+};
+document.getElementById('dlBtn').onclick = () => {
+  const blob = new Blob([currentReport], { type: 'text/markdown' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (currentTopic || 'report').toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 60) + '.md';
+  a.click();
+  URL.revokeObjectURL(a.href);
+};
+
+document.getElementById('runBtn').onclick = runResearch;
+document.getElementById('topic').addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') runResearch();
+});
+</script>
+</body>
+</html>
