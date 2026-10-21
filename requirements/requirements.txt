@@ -2,7 +2,7 @@
 #    uv pip compile ./requirements/requirements.in -o ./requirements/requirements.txt
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.14.1
+aiohttp==3.14.5
     # via
     #   kubernetes
     #   langchain-community
@@ -881,7 +881,7 @@ xxhash==3.5.0
     # via
     #   langgraph
     #   langsmith
-yarl==1.20.0
+yarl==1.25.1
     # via aiohttp
 zipp==3.23.1
     # via importlib-metadata
